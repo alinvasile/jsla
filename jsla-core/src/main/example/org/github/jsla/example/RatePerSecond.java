@@ -26,7 +26,7 @@ import org.github.jsla.core.sla.SlaValue;
 public class RatePerSecond {
 
    
-    public static void main(String[] args) {
+    public static void main(String[] args) throws InterruptedException {
        
         TransactionMonitor monitor = new TransactionMonitor();
         SlaValue rate = new SlaValue(5, 1, TimeUnit.SECONDS, false);
@@ -43,7 +43,19 @@ public class RatePerSecond {
             monitor.grant(user); // this should fail
             assert(false);
         } catch (TransactionDeniedException e){
-            e.printStackTrace();
+            //e.printStackTrace();
+        }
+        
+        Thread.sleep(1000);
+        
+        for(int i=0;i<5;i++){
+            monitor.grant(user); // this should succeed
+        }
+        try{
+            monitor.grant(user); // this should fail
+            assert(false);
+        } catch (TransactionDeniedException e){
+            //e.printStackTrace();
         }
 
     }
