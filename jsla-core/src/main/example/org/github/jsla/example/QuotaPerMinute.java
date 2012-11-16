@@ -23,19 +23,17 @@ import org.github.jsla.core.sla.Sla;
 import org.github.jsla.core.sla.SlaValue;
 
 /**
- * Example implementation for a rate of 5 requests/second. Quota will be ignored in this case. 
+ * Example implementation for a quota of 5 requests/10 seconds. Rate will be ignored for this case. 
  * 
  * @author Alin Vasile
  *
  */
-public class RatePerSecond {
+public class QuotaPerMinute {
 
-   
     public static void main(String[] args) throws InterruptedException {
-       
         TransactionMonitor monitor = new TransactionMonitor();
-        SlaValue rate = new SlaValue(5, 1, TimeUnit.SECONDS, false);
-        SlaValue quota = new SlaValue(10, 1, TimeUnit.HOURS, true);
+        SlaValue rate = new SlaValue(10, 1, TimeUnit.SECONDS, true);
+        SlaValue quota = new SlaValue(5, 10, TimeUnit.SECONDS, false);
         
         Sla sla = new Sla(rate, quota);
         monitor.addAnonymousConstraint(sla);
@@ -44,6 +42,7 @@ public class RatePerSecond {
         for(int i=0;i<5;i++){
             monitor.grant(user); // this should succeed
         }
+        
         try{
             monitor.grant(user); // this should fail
             assert(false);
@@ -51,11 +50,22 @@ public class RatePerSecond {
             e.printStackTrace();
         }
         
-        Thread.sleep(1000); // sleep 1 second
+        try{
+            monitor.grant(user); // this should fail
+            assert(false);
+        } catch (TransactionDeniedException e){
+            e.printStackTrace();
+        }
+        
+        Thread.sleep(10 * 1000);  // sleep 10 seconds
+        
+        
+        System.out.println("QuotaPerMinute: OK");
         
         for(int i=0;i<5;i++){
             monitor.grant(user); // this should succeed
         }
+        
         try{
             monitor.grant(user); // this should fail
             assert(false);
@@ -63,20 +73,7 @@ public class RatePerSecond {
             e.printStackTrace();
         }
         
-        Thread.sleep(5000);  // sleep 5 seconds
-        
-        for(int i=0;i<5;i++){
-            monitor.grant(user); // this should succeed
-        }
-        try{
-            monitor.grant(user); // this should fail
-            assert(false);
-        } catch (TransactionDeniedException e){
-            e.printStackTrace();
-        }
-        
-        System.out.println("RatePerSecond: OK");
-
     }
-
+    
+    
 }
