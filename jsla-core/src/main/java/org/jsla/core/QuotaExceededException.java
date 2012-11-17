@@ -13,26 +13,26 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.jsla.core.monitor;
+package org.jsla.core;
 
-public class RateExceededException extends TransactionDeniedException {
+public class QuotaExceededException extends TransactionDeniedException {
 
-	private static final long serialVersionUID = 5819722360779240199L;
+	private static final long serialVersionUID = 1916679904275255841L;
 
-	public RateExceededException() {
+	public QuotaExceededException() {
 		super();
 	}
 
-	public RateExceededException(String arg0, Throwable arg1) {
+	public QuotaExceededException(String arg0, Throwable arg1) {
 		super(arg0, arg1);
 	}
 
-	public RateExceededException(String arg0) {
+	public QuotaExceededException(String arg0) {
 		super(arg0);
 	}
 
-	public RateExceededException(Throwable arg0) {
+	public QuotaExceededException(Throwable arg0) {
 		super(arg0);
 	}
-	
+
 }

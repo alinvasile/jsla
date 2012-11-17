@@ -15,6 +15,7 @@
  */
 package org.jsla.core.monitor;
 
+import org.jsla.core.TransactionDeniedException;
 import org.jsla.core.authority.Authority;
 import org.jsla.core.sla.Sla;
 

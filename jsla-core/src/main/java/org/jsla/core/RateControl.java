@@ -13,17 +13,17 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.jsla.core.sla;
+package org.jsla.core;
 
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
 import org.isomorphism.util.TokenBucket;
 import org.isomorphism.util.TokenBuckets;
-import org.jsla.core.monitor.NoRateDefinedException;
-import org.jsla.core.monitor.QuotaExceededException;
-import org.jsla.core.monitor.RateExceededException;
-import org.jsla.core.monitor.TransactionDeniedException;
+import org.jsla.core.sla.Sla;
+import org.jsla.core.sla.SlaValue;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  * Maps a user property (username, group name) to a SLA. Internally it uses the
@@ -43,6 +43,8 @@ public class RateControl {
 
 	/** A mapping between the user property and the quota Token Bucket. */
 	private Map<String, TokenBucket> quotaConstraints = new ConcurrentHashMap<String, TokenBucket>();
+	
+	private static final Logger logger = LoggerFactory.getLogger(RateControl.class);
 
 	/**
 	 * Adds a SLA constraint for the given user property.
@@ -53,11 +55,20 @@ public class RateControl {
 	 *            the SLA to add.
 	 */
 	public void addConstraint(String authority, Sla sla) {
+		
+		if(logger.isDebugEnabled()){
+			logger.debug("Adding constraint " + sla + " for " + authority );
+		}
+		
 		SlaValue rate = sla.getRate();
 		SlaValue quota = sla.getQuota();
 
 		/* skip rates that are exceedable */
 		if (!rate.isCanBeExceeded()) {
+			if(logger.isDebugEnabled()){
+				logger.debug("rate not exceedable, adding tocken bucket");
+			}
+			
 			TokenBucket rateBucket = TokenBuckets.newFixedIntervalRefill(
 					rate.getAmount(), rate.getAmount(),
 					rate.getReferenceValue(), rate.getReferenceUnit());
@@ -66,6 +77,10 @@ public class RateControl {
 
 		/* skip quotas that are exceedable */
 		if (!quota.isCanBeExceeded()) {
+			if(logger.isDebugEnabled()){
+				logger.debug("quota not exceedable, adding tocken bucket");
+			}
+			
 			TokenBucket quotaBucket = TokenBuckets.newFixedIntervalRefill(
 					quota.getAmount(), quota.getAmount(),
 					quota.getReferenceValue(), quota.getReferenceUnit());
@@ -73,6 +88,10 @@ public class RateControl {
 		}
 
 		slaConstraints.put(authority, sla);
+		
+		if(logger.isDebugEnabled()){
+			logger.debug("Added constraint for " + authority + ", constraints map is now " + slaConstraints );
+		}
 	}
 
 	/**
@@ -88,7 +107,15 @@ public class RateControl {
 	 */
 	public void grant(String authority) throws NoRateDefinedException,
 			TransactionDeniedException {
+		if(logger.isDebugEnabled()){
+			logger.debug("Check access for " + authority );
+		}
+		
 		Sla sla = slaConstraints.get(authority);
+		
+		if(logger.isDebugEnabled()){
+			logger.debug("SLA for " + authority + " is " + sla);
+		}
 
 		if (sla == null) {
 			throw new NoRateDefinedException("No SLA defined for " + authority);
@@ -98,12 +125,21 @@ public class RateControl {
 
 			TokenBucket quotaBucket = quotaConstraints.get(authority);
 
+			if(logger.isDebugEnabled()){
+				logger.debug("Quota bucket for " + authority + " is " + quotaBucket);
+			}
+			
 			if (quotaBucket == null) {
 				throw new NoRateDefinedException("No quota SLA defined for "
 						+ authority);
 			}
 
 			boolean quotaAllowed = quotaBucket.tryConsume();
+			
+			if(logger.isInfoEnabled()){
+				logger.info("Quota allowed for " + authority + ": " + quotaAllowed);
+			}
+			
 			if (!quotaAllowed) {
 				// deny access
 				throw new QuotaExceededException("Quota exceeded for "
@@ -113,6 +149,10 @@ public class RateControl {
 
 		if (!sla.getRate().isCanBeExceeded()) {
 			TokenBucket rateBucket = rateConstraints.get(authority);
+			
+			if(logger.isDebugEnabled()){
+				logger.debug("Rate bucket for authority " + authority + " is " + rateBucket);
+			}
 
 			if (rateBucket == null) {
 				throw new NoRateDefinedException("No rate SLA defined for "
@@ -120,6 +160,11 @@ public class RateControl {
 			}
 
 			boolean rateAllowed = rateBucket.tryConsume();
+			
+			if(logger.isInfoEnabled()){
+				logger.info("Rate allowed for " + authority + ": " + rateAllowed);
+			}
+			
 			if (!rateAllowed) {
 				// deny access
 				throw new RateExceededException("Rate exceeded for "

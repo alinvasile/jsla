@@ -114,4 +114,11 @@ public class SlaValue {
 		return canBeExceeded;
 	}
 
+	@Override
+	public String toString() {
+		return "SlaValue [amount=" + amount + ", referenceValue="
+				+ referenceValue + ", referenceUnit=" + referenceUnit
+				+ ", canBeExceeded=" + canBeExceeded + "]";
+	}
+
 }

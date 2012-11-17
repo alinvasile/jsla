@@ -105,4 +105,11 @@ public class Sla {
 		return new Sla(SlaValue.UNLIMITED, quota);
 	}
 
+	@Override
+	public String toString() {
+		return "Sla [rate=" + rate + ", quota=" + quota + "]";
+	}
+	
+	
+
 }

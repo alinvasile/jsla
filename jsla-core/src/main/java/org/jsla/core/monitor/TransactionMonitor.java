@@ -15,9 +15,13 @@
  */
 package org.jsla.core.monitor;
 
+import org.jsla.core.NoRateDefinedException;
+import org.jsla.core.RateControl;
+import org.jsla.core.TransactionDeniedException;
 import org.jsla.core.authority.Authority;
-import org.jsla.core.sla.RateControl;
 import org.jsla.core.sla.Sla;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  * 
@@ -34,6 +38,8 @@ public class TransactionMonitor implements TransactionMonitorService {
 	protected RateControl usernameRateControl = new RateControl();
 	protected RateControl groupRateControl = new RateControl();
 	protected RateControl anonymousRateControl = new RateControl();
+	
+	private static final Logger logger = LoggerFactory.getLogger(TransactionMonitor.class);
 
 	/*
 	 * (non-Javadoc)
@@ -77,13 +83,26 @@ public class TransactionMonitor implements TransactionMonitorService {
 	 */
 	public void grant(Authority authority) throws TransactionDeniedException {
 
+		if(logger.isDebugEnabled()){
+			logger.debug("Grant " + authority);
+		}
+		
 		if (authority.isAnonymous()) {
+			if(logger.isInfoEnabled()){
+				logger.info("User is anonymous, checking access");
+			}
 			anonymousRateControl.grant(ANONYMOUS);
 		} else {
 			try {
+				if(logger.isInfoEnabled()){
+					logger.info("Checking username access: " + authority.getUsername());
+				}
 				usernameRateControl.grant(authority.getUsername());
 			} catch (NoRateDefinedException e) {
 				// no rate defined for username, going with group
+				if(logger.isInfoEnabled()){
+					logger.info("Checking group access: " + authority.getGroup());
+				}
 				groupRateControl.grant(authority.getGroup());
 			}
 		}

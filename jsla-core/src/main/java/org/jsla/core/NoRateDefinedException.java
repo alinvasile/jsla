@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.jsla.core.monitor;
+package org.jsla.core;
 
 public class NoRateDefinedException extends TransactionDeniedException {
 

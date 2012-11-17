@@ -21,8 +21,6 @@ import static org.mockito.Mockito.when;
 import java.util.concurrent.TimeUnit;
 
 import org.jsla.core.authority.Authority;
-import org.jsla.core.monitor.NoRateDefinedException;
-import org.jsla.core.monitor.RateExceededException;
 import org.jsla.core.monitor.TransactionMonitor;
 import org.jsla.core.monitor.TransactionMonitorService;
 import org.jsla.core.sla.Sla;

@@ -17,7 +17,7 @@ package org.github.jsla.example;
 
 import java.util.concurrent.TimeUnit;
 
-import org.jsla.core.monitor.TransactionDeniedException;
+import org.jsla.core.TransactionDeniedException;
 import org.jsla.core.monitor.TransactionMonitor;
 import org.jsla.core.monitor.TransactionMonitorService;
 import org.jsla.core.sla.Sla;
