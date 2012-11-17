@@ -13,20 +13,20 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.github.jsla.core;
+package org.jsla.core;
 
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
 import java.util.concurrent.TimeUnit;
 
-import org.github.jsla.core.authority.Authority;
-import org.github.jsla.core.monitor.NoRateDefinedException;
-import org.github.jsla.core.monitor.RateExceededException;
-import org.github.jsla.core.monitor.TransactionMonitor;
-import org.github.jsla.core.monitor.TransactionMonitorService;
-import org.github.jsla.core.sla.Sla;
-import org.github.jsla.core.sla.SlaValue;
+import org.jsla.core.authority.Authority;
+import org.jsla.core.monitor.NoRateDefinedException;
+import org.jsla.core.monitor.RateExceededException;
+import org.jsla.core.monitor.TransactionMonitor;
+import org.jsla.core.monitor.TransactionMonitorService;
+import org.jsla.core.sla.Sla;
+import org.jsla.core.sla.SlaValue;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;

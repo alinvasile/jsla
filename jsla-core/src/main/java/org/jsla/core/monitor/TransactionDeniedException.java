@@ -13,25 +13,25 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.github.jsla.core.monitor;
+package org.jsla.core.monitor;
 
-public class NoRateDefinedException extends TransactionDeniedException {
+public class TransactionDeniedException extends RuntimeException {
 
-	private static final long serialVersionUID = 3950739416650661920L;
+	private static final long serialVersionUID = -2760086542600346586L;
 
-	public NoRateDefinedException() {
+	public TransactionDeniedException() {
 		super();
 	}
 
-	public NoRateDefinedException(String arg0, Throwable arg1) {
+	public TransactionDeniedException(String arg0, Throwable arg1) {
 		super(arg0, arg1);
 	}
 
-	public NoRateDefinedException(String arg0) {
+	public TransactionDeniedException(String arg0) {
 		super(arg0);
 	}
 
-	public NoRateDefinedException(Throwable arg0) {
+	public TransactionDeniedException(Throwable arg0) {
 		super(arg0);
 	}
 

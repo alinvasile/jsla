@@ -13,26 +13,14 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.github.jsla.core.monitor;
+package org.jsla.core.authority;
 
-public class TransactionDeniedException extends RuntimeException {
+public interface Authority {
 
-	private static final long serialVersionUID = -2760086542600346586L;
+	public String getUsername();
 
-	public TransactionDeniedException() {
-		super();
-	}
+	public String getGroup();
 
-	public TransactionDeniedException(String arg0, Throwable arg1) {
-		super(arg0, arg1);
-	}
-
-	public TransactionDeniedException(String arg0) {
-		super(arg0);
-	}
-
-	public TransactionDeniedException(Throwable arg0) {
-		super(arg0);
-	}
+	boolean isAnonymous();
 
 }

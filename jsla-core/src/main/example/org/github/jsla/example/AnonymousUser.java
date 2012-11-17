@@ -1,6 +1,6 @@
 package org.github.jsla.example;
 
-import org.github.jsla.core.authority.Authority;
+import org.jsla.core.authority.Authority;
 
 public class AnonymousUser implements Authority {
 

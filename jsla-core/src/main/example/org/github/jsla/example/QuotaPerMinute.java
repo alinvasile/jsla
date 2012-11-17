@@ -17,11 +17,11 @@ package org.github.jsla.example;
 
 import java.util.concurrent.TimeUnit;
 
-import org.github.jsla.core.monitor.TransactionDeniedException;
-import org.github.jsla.core.monitor.TransactionMonitor;
-import org.github.jsla.core.monitor.TransactionMonitorService;
-import org.github.jsla.core.sla.Sla;
-import org.github.jsla.core.sla.SlaValue;
+import org.jsla.core.monitor.TransactionDeniedException;
+import org.jsla.core.monitor.TransactionMonitor;
+import org.jsla.core.monitor.TransactionMonitorService;
+import org.jsla.core.sla.Sla;
+import org.jsla.core.sla.SlaValue;
 
 /**
  * Example implementation for a quota of 5 requests/10 seconds. Rate will be ignored for this case. 

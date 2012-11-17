@@ -13,17 +13,17 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.github.jsla.core.sla;
+package org.jsla.core.sla;
 
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
-import org.github.jsla.core.monitor.NoRateDefinedException;
-import org.github.jsla.core.monitor.QuotaExceededException;
-import org.github.jsla.core.monitor.RateExceededException;
-import org.github.jsla.core.monitor.TransactionDeniedException;
 import org.isomorphism.util.TokenBucket;
 import org.isomorphism.util.TokenBuckets;
+import org.jsla.core.monitor.NoRateDefinedException;
+import org.jsla.core.monitor.QuotaExceededException;
+import org.jsla.core.monitor.RateExceededException;
+import org.jsla.core.monitor.TransactionDeniedException;
 
 /**
  * Maps a user property (username, group name) to a SLA. Internally it uses the

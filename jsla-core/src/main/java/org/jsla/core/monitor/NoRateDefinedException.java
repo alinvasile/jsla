@@ -13,14 +13,26 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.github.jsla.core.authority;
+package org.jsla.core.monitor;
 
-public interface Authority {
+public class NoRateDefinedException extends TransactionDeniedException {
 
-	public String getUsername();
+	private static final long serialVersionUID = 3950739416650661920L;
 
-	public String getGroup();
+	public NoRateDefinedException() {
+		super();
+	}
 
-	boolean isAnonymous();
+	public NoRateDefinedException(String arg0, Throwable arg1) {
+		super(arg0, arg1);
+	}
+
+	public NoRateDefinedException(String arg0) {
+		super(arg0);
+	}
+
+	public NoRateDefinedException(Throwable arg0) {
+		super(arg0);
+	}
 
 }

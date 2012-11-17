@@ -13,11 +13,11 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.github.jsla.core.monitor;
+package org.jsla.core.monitor;
 
-import org.github.jsla.core.authority.Authority;
-import org.github.jsla.core.sla.RateControl;
-import org.github.jsla.core.sla.Sla;
+import org.jsla.core.authority.Authority;
+import org.jsla.core.sla.RateControl;
+import org.jsla.core.sla.Sla;
 
 /**
  * 
