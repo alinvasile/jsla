@@ -23,55 +23,108 @@ import org.github.jsla.core.monitor.TransactionDeniedException;
 import org.isomorphism.util.TokenBucket;
 import org.isomorphism.util.TokenBuckets;
 
+/**
+ * Maps a user property (username, group name) to a SLA. Internally it uses the
+ * Token Bucket algorithm for rate and quota control.
+ * 
+ * @author Alin Vasile
+ * @since 1.0
+ * 
+ */
 public class RateControl {
 
-    private Map<String, Sla> slaConstraints = new ConcurrentHashMap<String, Sla>();
-    
-    private Map<String, TokenBucket> rateConstraints = new ConcurrentHashMap<String, TokenBucket>();
-    
-    private Map<String, TokenBucket> quotaConstraints = new ConcurrentHashMap<String, TokenBucket>();
-    
-    public void addConstraint(String authority, Sla sla) {
-        SlaValue rate = sla.getRate();
-        SlaValue quota = sla.getQuota();
+	/** A mapping between the user property and the defined SLAs. */
+	private Map<String, Sla> slaConstraints = new ConcurrentHashMap<String, Sla>();
 
-        TokenBucket rateBucket = TokenBuckets.newFixedIntervalRefill(rate.getAmount(), rate.getAmount(),
-                rate.getReferenceValue(), rate.getReferenceUnit());
-        TokenBucket quotaBucket = TokenBuckets.newFixedIntervalRefill(quota.getAmount(), quota.getAmount(),
-                quota.getReferenceValue(), quota.getReferenceUnit());
+	/** A mapping between the user property and the rate Token Bucket. */
+	private Map<String, TokenBucket> rateConstraints = new ConcurrentHashMap<String, TokenBucket>();
 
-        rateConstraints.put(authority, rateBucket);
-        quotaConstraints.put(authority, quotaBucket);
-        slaConstraints.put(authority, sla);
-    }
-    
-    public void grant(String authority) throws NoRateDefinedException, TransactionDeniedException {
-        TokenBucket quotaBucket = quotaConstraints.get(authority);
+	/** A mapping between the user property and the quota Token Bucket. */
+	private Map<String, TokenBucket> quotaConstraints = new ConcurrentHashMap<String, TokenBucket>();
 
-        if (quotaBucket == null) {
-            throw new NoRateDefinedException("No quota SLA defined for " + authority);
-        }
+	/**
+	 * Adds a SLA constraint for the given user property.
+	 * 
+	 * @param authority
+	 *            the user property, such as user or group name.
+	 * @param sla
+	 *            the SLA to add.
+	 */
+	public void addConstraint(String authority, Sla sla) {
+		SlaValue rate = sla.getRate();
+		SlaValue quota = sla.getQuota();
 
-        Sla sla = slaConstraints.get(authority);
+		/* skip rates that are exceedable */
+		if (!rate.isCanBeExceeded()) {
+			TokenBucket rateBucket = TokenBuckets.newFixedIntervalRefill(
+					rate.getAmount(), rate.getAmount(),
+					rate.getReferenceValue(), rate.getReferenceUnit());
+			rateConstraints.put(authority, rateBucket);
+		}
 
-        boolean quotaAllowed = quotaBucket.tryConsume();
-        if (!quotaAllowed && !sla.getQuota().isCanBeExceeded()) {
-            // deny access
-            throw new TransactionDeniedException("Quota exceeded for " + authority);
-        }
+		/* skip quotas that are exceedable */
+		if (!quota.isCanBeExceeded()) {
+			TokenBucket quotaBucket = TokenBuckets.newFixedIntervalRefill(
+					quota.getAmount(), quota.getAmount(),
+					quota.getReferenceValue(), quota.getReferenceUnit());
+			quotaConstraints.put(authority, quotaBucket);
+		}
 
-        TokenBucket rateBucket = rateConstraints.get(authority);
+		slaConstraints.put(authority, sla);
+	}
 
-        if (rateBucket == null) {
-            throw new NoRateDefinedException("No rate SLA defined for " + authority);
-        }
+	/**
+	 * Grant access based on the given user property.
+	 * 
+	 * @param authority
+	 *            the user property, such as user or group name.
+	 * @throws NoRateDefinedException
+	 *             when no SLA is defined for the given user property.
+	 * @throws TransactionDeniedException
+	 *             when SLA is breached for the given user property, be it rate
+	 *             or quota.
+	 */
+	public void grant(String authority) throws NoRateDefinedException,
+			TransactionDeniedException {
+		Sla sla = slaConstraints.get(authority);
 
-        boolean rateAllowed = rateBucket.tryConsume();
-        if (!rateAllowed && !sla.getRate().isCanBeExceeded()) {
-            // deny access
-            throw new TransactionDeniedException("Rate exceeded for " + authority);
-        }
+		if (sla == null) {
+			throw new NoRateDefinedException("No SLA defined for " + authority);
+		}
 
-    }
-    
+		if (!sla.getQuota().isCanBeExceeded()) {
+
+			TokenBucket quotaBucket = quotaConstraints.get(authority);
+
+			if (quotaBucket == null) {
+				throw new NoRateDefinedException("No quota SLA defined for "
+						+ authority);
+			}
+
+			boolean quotaAllowed = quotaBucket.tryConsume();
+			if (!quotaAllowed) {
+				// deny access
+				throw new TransactionDeniedException("Quota exceeded for "
+						+ authority);
+			}
+		}
+
+		if (!sla.getRate().isCanBeExceeded()) {
+			TokenBucket rateBucket = rateConstraints.get(authority);
+
+			if (rateBucket == null) {
+				throw new NoRateDefinedException("No rate SLA defined for "
+						+ authority);
+			}
+
+			boolean rateAllowed = rateBucket.tryConsume();
+			if (!rateAllowed) {
+				// deny access
+				throw new TransactionDeniedException("Rate exceeded for "
+						+ authority);
+			}
+		}
+
+	}
+
 }

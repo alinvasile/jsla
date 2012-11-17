@@ -19,39 +19,76 @@ import org.github.jsla.core.authority.Authority;
 import org.github.jsla.core.sla.RateControl;
 import org.github.jsla.core.sla.Sla;
 
-public class TransactionMonitor {
-    
-    private static final String ANONYMOUS = "ANONYMOUS";
+/**
+ * 
+ * Base implementation of a transaction monitor.
+ * 
+ * @author Alin Vasile
+ * @since 1.0
+ *
+ */
+public class TransactionMonitor implements TransactionMonitorService {
 
-    private RateControl usernameRateControl = new RateControl();
-    private RateControl groupRateControl = new RateControl();
-    private RateControl anonymousRateControl = new RateControl();
-    
-    public void addUsernameConstraint(String username, Sla sla) {
-        usernameRateControl.addConstraint(username, sla);
-    }
-    
-    public void addGroupConstraint(String group, Sla sla) {
-        groupRateControl.addConstraint(group, sla);
-    }
-    
-    public void addAnonymousConstraint(Sla sla) {
-        anonymousRateControl.addConstraint(ANONYMOUS, sla);
-    }
+	protected static final String ANONYMOUS = "ANONYMOUS";
 
-    public void grant(Authority authority) throws NoRateDefinedException, TransactionDeniedException {
-        
-        if(authority.isAnonymous()){
-            anonymousRateControl.grant(ANONYMOUS);
-        } else {
-            try{
-                usernameRateControl.grant(authority.getUsername());
-            } catch(NoRateDefinedException e){
-                // no rate defined for username, going with group
-                groupRateControl.grant(authority.getGroup());
-            }
-        }
+	protected RateControl usernameRateControl = new RateControl();
+	protected RateControl groupRateControl = new RateControl();
+	protected RateControl anonymousRateControl = new RateControl();
 
-    }
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see
+	 * org.github.jsla.core.monitor.TransactionMonitorService#addUsernameConstraint
+	 * (java.lang.String, org.github.jsla.core.sla.Sla)
+	 */
+	public void addUsernameConstraint(String username, Sla sla) {
+		usernameRateControl.addConstraint(username, sla);
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see
+	 * org.github.jsla.core.monitor.TransactionMonitorService#addGroupConstraint
+	 * (java.lang.String, org.github.jsla.core.sla.Sla)
+	 */
+	public void addGroupConstraint(String group, Sla sla) {
+		groupRateControl.addConstraint(group, sla);
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see
+	 * org.github.jsla.core.monitor.TransactionMonitorService#addAnonymousConstraint
+	 * (org.github.jsla.core.sla.Sla)
+	 */
+	public void addAnonymousConstraint(Sla sla) {
+		anonymousRateControl.addConstraint(ANONYMOUS, sla);
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see
+	 * org.github.jsla.core.monitor.TransactionMonitorService#grant(org.github
+	 * .jsla.core.authority.Authority)
+	 */
+	public void grant(Authority authority) throws NoRateDefinedException,
+			TransactionDeniedException {
+
+		if (authority.isAnonymous()) {
+			anonymousRateControl.grant(ANONYMOUS);
+		} else {
+			try {
+				usernameRateControl.grant(authority.getUsername());
+			} catch (NoRateDefinedException e) {
+				// no rate defined for username, going with group
+				groupRateControl.grant(authority.getGroup());
+			}
+		}
+
+	}
 
 }

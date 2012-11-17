@@ -17,10 +17,10 @@ package org.github.jsla.core.authority;
 
 public interface Authority {
 
-    public String getUsername();
+	public String getUsername();
 
-    public String getGroup();
-    
-    boolean isAnonymous();
-    
+	public String getGroup();
+
+	boolean isAnonymous();
+
 }

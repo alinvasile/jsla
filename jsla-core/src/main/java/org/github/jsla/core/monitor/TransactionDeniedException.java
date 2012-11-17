@@ -17,22 +17,22 @@ package org.github.jsla.core.monitor;
 
 public class TransactionDeniedException extends RuntimeException {
 
-    private static final long serialVersionUID = -2760086542600346586L;
+	private static final long serialVersionUID = -2760086542600346586L;
 
-    public TransactionDeniedException() {
-        super();
-    }
+	public TransactionDeniedException() {
+		super();
+	}
 
-    public TransactionDeniedException(String arg0, Throwable arg1) {
-        super(arg0, arg1);
-    }
+	public TransactionDeniedException(String arg0, Throwable arg1) {
+		super(arg0, arg1);
+	}
 
-    public TransactionDeniedException(String arg0) {
-        super(arg0);
-    }
+	public TransactionDeniedException(String arg0) {
+		super(arg0);
+	}
 
-    public TransactionDeniedException(Throwable arg0) {
-        super(arg0);
-    }
+	public TransactionDeniedException(Throwable arg0) {
+		super(arg0);
+	}
 
 }

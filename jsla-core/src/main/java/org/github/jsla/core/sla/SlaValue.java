@@ -19,9 +19,9 @@ import java.util.concurrent.TimeUnit;
 
 /**
  * <p>
- * A SLA value represents an association between a maximum allowed of transactions
- * in a given time interval. Several examples are "10 requests per second",
- * "5 requests per minute" and so on.
+ * A SLA value represents an association between a maximum allowed of
+ * transactions in a given time interval. Several examples are
+ * "10 requests per second", "5 requests per minute" and so on.
  * </p>
  * 
  * 
@@ -33,55 +33,85 @@ import java.util.concurrent.TimeUnit;
 
 public class SlaValue {
 
-    /** the number of allowed transactions in the given time interval */
-    private final long amount;
+	/** constant value representing an unlimited SLA value */
+	public static final SlaValue UNLIMITED = new SlaValue(-1, -1,
+			TimeUnit.SECONDS, true);
 
-    /**
-     * the quantity value for the time interval, such as one second or five
-     * minutes
-     */
-    private final long referenceValue;
+	/** the number of allowed transactions in the given time interval */
+	private final long amount;
 
-    /** the unit of time interval, such as DAYS or HOURS */
-    private final TimeUnit referenceUnit;
-    
-    /** an indicator wether this SLA value can be exceeded or not. */
-    private final boolean canBeExceeded;
+	/**
+	 * the quantity value for the time interval, such as one second or five
+	 * minutes
+	 */
+	private final long referenceValue;
 
-    /**
-     * Creates an sla with the given amount of allowed transactions in one second. This SLA can't be exceeded.
-     * 
-     * @param amount
-     *            the number of allowed transactions in one second
-     */
-    public SlaValue(long amount) {
-        this(amount, 1, TimeUnit.SECONDS, false);
-    }
+	/** the unit of time interval, such as DAYS or HOURS */
+	private final TimeUnit referenceUnit;
 
-    public SlaValue(long amount, long referenceValue, TimeUnit referenceUnit,boolean canBeExceeded) {
-        super();
-        this.amount = amount;
-        this.referenceValue = referenceValue;
-        this.referenceUnit = referenceUnit;
-        this.canBeExceeded = canBeExceeded;
-    }
+	/** an indicator whether this SLA value can be exceeded or not. */
+	private final boolean canBeExceeded;
 
-    public long getAmount() {
-        return amount;
-    }
+	/**
+	 * Creates a non-exceedable SLA value with the given amount of allowed
+	 * transactions in one second.
+	 * 
+	 * @param amount
+	 *            the number of allowed transactions in one second.
+	 */
+	public SlaValue(long amount) {
+		this(amount, 1, TimeUnit.SECONDS, false);
+	}
 
-    public long getReferenceValue() {
-        return referenceValue;
-    }
+	/**
+	 * Constructs a non-exceedable SLA value with the given arguments.
+	 * 
+	 * @param amount
+	 *            the number of allowed transactions in one second.
+	 * @param referenceValue
+	 *            the interval this value is defined for.
+	 * @param referenceUnit
+	 *            the time unit this interval is expressed.
+	 */
+	public SlaValue(long amount, long referenceValue, TimeUnit referenceUnit) {
+		this(amount, referenceValue, referenceUnit, false);
+	}
 
-    public TimeUnit getReferenceUnit() {
-        return referenceUnit;
-    }
+	/**
+	 * Constructs a SLA value with the given arguments.
+	 * 
+	 * @param amount
+	 *            amount the number of allowed transactions in one second.
+	 * @param referenceValue
+	 *            referenceValue the interval this value is defined for.
+	 * @param referenceUnit
+	 *            referenceUnit the time unit this interval is expressed.
+	 * @param canBeExceeded
+	 *            boolean flag, marks this SLA value as exceedable or not.
+	 */
+	public SlaValue(long amount, long referenceValue, TimeUnit referenceUnit,
+			boolean canBeExceeded) {
+		super();
+		this.amount = amount;
+		this.referenceValue = referenceValue;
+		this.referenceUnit = referenceUnit;
+		this.canBeExceeded = canBeExceeded;
+	}
 
-    public boolean isCanBeExceeded() {
-        return canBeExceeded;
-    }
-    
-    
+	public long getAmount() {
+		return amount;
+	}
+
+	public long getReferenceValue() {
+		return referenceValue;
+	}
+
+	public TimeUnit getReferenceUnit() {
+		return referenceUnit;
+	}
+
+	public boolean isCanBeExceeded() {
+		return canBeExceeded;
+	}
 
 }

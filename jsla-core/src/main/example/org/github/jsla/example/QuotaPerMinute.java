@@ -19,6 +19,7 @@ import java.util.concurrent.TimeUnit;
 
 import org.github.jsla.core.monitor.TransactionDeniedException;
 import org.github.jsla.core.monitor.TransactionMonitor;
+import org.github.jsla.core.monitor.TransactionMonitorService;
 import org.github.jsla.core.sla.Sla;
 import org.github.jsla.core.sla.SlaValue;
 
@@ -31,7 +32,7 @@ import org.github.jsla.core.sla.SlaValue;
 public class QuotaPerMinute {
 
     public static void main(String[] args) throws InterruptedException {
-        TransactionMonitor monitor = new TransactionMonitor();
+        TransactionMonitorService monitor = new TransactionMonitor();
         SlaValue rate = new SlaValue(10, 1, TimeUnit.SECONDS, true);
         SlaValue quota = new SlaValue(5, 10, TimeUnit.SECONDS, false);
         
