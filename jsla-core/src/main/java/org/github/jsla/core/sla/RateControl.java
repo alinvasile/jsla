@@ -19,6 +19,8 @@ import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
 import org.github.jsla.core.monitor.NoRateDefinedException;
+import org.github.jsla.core.monitor.QuotaExceededException;
+import org.github.jsla.core.monitor.RateExceededException;
 import org.github.jsla.core.monitor.TransactionDeniedException;
 import org.isomorphism.util.TokenBucket;
 import org.isomorphism.util.TokenBuckets;
@@ -104,7 +106,7 @@ public class RateControl {
 			boolean quotaAllowed = quotaBucket.tryConsume();
 			if (!quotaAllowed) {
 				// deny access
-				throw new TransactionDeniedException("Quota exceeded for "
+				throw new QuotaExceededException("Quota exceeded for "
 						+ authority);
 			}
 		}
@@ -120,7 +122,7 @@ public class RateControl {
 			boolean rateAllowed = rateBucket.tryConsume();
 			if (!rateAllowed) {
 				// deny access
-				throw new TransactionDeniedException("Rate exceeded for "
+				throw new RateExceededException("Rate exceeded for "
 						+ authority);
 			}
 		}

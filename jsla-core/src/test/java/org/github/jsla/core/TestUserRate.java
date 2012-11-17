@@ -22,7 +22,7 @@ import java.util.concurrent.TimeUnit;
 
 import org.github.jsla.core.authority.Authority;
 import org.github.jsla.core.monitor.NoRateDefinedException;
-import org.github.jsla.core.monitor.TransactionDeniedException;
+import org.github.jsla.core.monitor.RateExceededException;
 import org.github.jsla.core.monitor.TransactionMonitor;
 import org.github.jsla.core.monitor.TransactionMonitorService;
 import org.github.jsla.core.sla.Sla;
@@ -83,7 +83,7 @@ public class TestUserRate {
 		service.grant(authority);
 	}
 	
-	@Test(expected=TransactionDeniedException.class)
+	@Test(expected=RateExceededException.class)
 	public void testUsernameSlaRateExceeded(){
 		Sla sla = Sla.createSlaRateWithQuotaUnlimited(new SlaValue(1, 1, TimeUnit.SECONDS)); 
 		
@@ -102,7 +102,7 @@ public class TestUserRate {
 		service.grant(authority);
 	}
 	
-	@Test(expected=TransactionDeniedException.class)
+	@Test(expected=RateExceededException.class)
 	public void testGroupSlaRateExceeded(){
 		Sla sla = Sla.createSlaRateWithQuotaUnlimited(new SlaValue(1, 1, TimeUnit.SECONDS)); 
 		
@@ -121,7 +121,7 @@ public class TestUserRate {
 		service.grant(anonymous);
 	}
 	
-	@Test(expected=TransactionDeniedException.class)
+	@Test(expected=RateExceededException.class)
 	public void testAnonymousSlaRateExceeded(){
 		Sla sla = Sla.createSlaRateWithQuotaUnlimited(new SlaValue(1, 1, TimeUnit.SECONDS)); 
 		

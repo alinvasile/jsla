@@ -59,12 +59,9 @@ public interface TransactionMonitorService {
 	 * 
 	 * @param authority
 	 *            the authority to grant access.
-	 * @throws NoRateDefinedException
-	 *             when no SLA is defined for this authority.
 	 * @throws TransactionDeniedException
 	 *             when the authority is denied access due to SLA breach.
 	 */
-	void grant(Authority authority) throws NoRateDefinedException,
-			TransactionDeniedException;
+	void grant(Authority authority) throws TransactionDeniedException;
 
 }

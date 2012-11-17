@@ -15,24 +15,24 @@
  */
 package org.github.jsla.core.monitor;
 
-public class NoRateDefinedException extends TransactionDeniedException {
+public class RateExceededException extends TransactionDeniedException {
 
-	private static final long serialVersionUID = 3950739416650661920L;
+	private static final long serialVersionUID = 5819722360779240199L;
 
-	public NoRateDefinedException() {
+	public RateExceededException() {
 		super();
 	}
 
-	public NoRateDefinedException(String arg0, Throwable arg1) {
+	public RateExceededException(String arg0, Throwable arg1) {
 		super(arg0, arg1);
 	}
 
-	public NoRateDefinedException(String arg0) {
+	public RateExceededException(String arg0) {
 		super(arg0);
 	}
 
-	public NoRateDefinedException(Throwable arg0) {
+	public RateExceededException(Throwable arg0) {
 		super(arg0);
 	}
-
+	
 }

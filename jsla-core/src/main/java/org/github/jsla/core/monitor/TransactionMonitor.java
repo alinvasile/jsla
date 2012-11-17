@@ -75,8 +75,7 @@ public class TransactionMonitor implements TransactionMonitorService {
 	 * org.github.jsla.core.monitor.TransactionMonitorService#grant(org.github
 	 * .jsla.core.authority.Authority)
 	 */
-	public void grant(Authority authority) throws NoRateDefinedException,
-			TransactionDeniedException {
+	public void grant(Authority authority) throws TransactionDeniedException {
 
 		if (authority.isAnonymous()) {
 			anonymousRateControl.grant(ANONYMOUS);
