@@ -13,13 +13,12 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.github.jsla.example;
+package org.jsla.example;
 
 import java.util.concurrent.TimeUnit;
 
-import org.jsla.core.TransactionDeniedException;
-import org.jsla.core.monitor.TransactionMonitor;
-import org.jsla.core.monitor.TransactionMonitorService;
+import org.jsla.core.SlaDeniedException;
+import org.jsla.core.monitor.UsernameGroupTransactionMonitor;
 import org.jsla.core.sla.Sla;
 import org.jsla.core.sla.SlaValue;
 
@@ -32,7 +31,7 @@ import org.jsla.core.sla.SlaValue;
 public class QuotaPerMinute {
 
     public static void main(String[] args) throws InterruptedException {
-        TransactionMonitorService monitor = new TransactionMonitor();
+    	UsernameGroupTransactionMonitor monitor = new UsernameGroupTransactionMonitor();
         SlaValue rate = new SlaValue(10, 1, TimeUnit.SECONDS, true);
         SlaValue quota = new SlaValue(5, 10, TimeUnit.SECONDS, false);
         
@@ -47,14 +46,14 @@ public class QuotaPerMinute {
         try{
             monitor.grant(user); // this should fail
             assert(false);
-        } catch (TransactionDeniedException e){
+        } catch (SlaDeniedException e){
             e.printStackTrace();
         }
         
         try{
             monitor.grant(user); // this should fail
             assert(false);
-        } catch (TransactionDeniedException e){
+        } catch (SlaDeniedException e){
             e.printStackTrace();
         }
         
@@ -70,7 +69,7 @@ public class QuotaPerMinute {
         try{
             monitor.grant(user); // this should fail
             assert(false);
-        } catch (TransactionDeniedException e){
+        } catch (SlaDeniedException e){
             e.printStackTrace();
         }
         

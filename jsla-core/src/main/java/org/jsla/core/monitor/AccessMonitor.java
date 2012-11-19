@@ -13,26 +13,28 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.jsla.core;
+package org.jsla.core.monitor;
 
-public class TransactionDeniedException extends RuntimeException {
+import org.jsla.core.SlaDeniedException;
+import org.jsla.core.authority.Authority;
 
-	private static final long serialVersionUID = -2760086542600346586L;
+/**
+ * Matches authorities against SLAs.
+ * 
+ * @author Alin Vasile
+ * @since 1.0
+ */
+public interface AccessMonitor {
 
-	public TransactionDeniedException() {
-		super();
-	}
-
-	public TransactionDeniedException(String arg0, Throwable arg1) {
-		super(arg0, arg1);
-	}
-
-	public TransactionDeniedException(String arg0) {
-		super(arg0);
-	}
-
-	public TransactionDeniedException(Throwable arg0) {
-		super(arg0);
-	}
+	
+	/**
+	 * Grants or denies access for the given authority.
+	 * 
+	 * @param authority
+	 *            the authority to grant access.
+	 * @throws SlaDeniedException
+	 *             when the authority is denied access due to SLA breach.
+	 */
+	void grant(Authority authority) throws SlaDeniedException;
 
 }

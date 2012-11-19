@@ -17,7 +17,7 @@ package org.jsla.core.monitor;
 
 import org.jsla.core.NoRateDefinedException;
 import org.jsla.core.RateControl;
-import org.jsla.core.TransactionDeniedException;
+import org.jsla.core.SlaDeniedException;
 import org.jsla.core.authority.Authority;
 import org.jsla.core.sla.Sla;
 import org.slf4j.Logger;
@@ -25,13 +25,13 @@ import org.slf4j.LoggerFactory;
 
 /**
  * 
- * Base implementation of a transaction monitor.
+ * User/group name based enforcement of a SLA monitor.
  * 
  * @author Alin Vasile
  * @since 1.0
  *
  */
-public class TransactionMonitor implements TransactionMonitorService {
+public class UsernameGroupTransactionMonitor implements AccessMonitor {
 
 	protected static final String ANONYMOUS = "ANONYMOUS";
 
@@ -39,36 +39,37 @@ public class TransactionMonitor implements TransactionMonitorService {
 	protected RateControl groupRateControl = new RateControl();
 	protected RateControl anonymousRateControl = new RateControl();
 	
-	private static final Logger logger = LoggerFactory.getLogger(TransactionMonitor.class);
+	private static final Logger logger = LoggerFactory.getLogger(UsernameGroupTransactionMonitor.class);
 
-	/*
-	 * (non-Javadoc)
+	/**
+	 * Adds a username SLA.
 	 * 
-	 * @see
-	 * org.github.jsla.core.monitor.TransactionMonitorService#addUsernameConstraint
-	 * (java.lang.String, org.github.jsla.core.sla.Sla)
+	 * @param username
+	 *            the user name to add the SLA for.
+	 * @param sla
+	 *            the SLA to add.
 	 */
 	public void addUsernameConstraint(String username, Sla sla) {
 		usernameRateControl.addConstraint(username, sla);
 	}
 
-	/*
-	 * (non-Javadoc)
+	/**
+	 * Adds a group SLA.
 	 * 
-	 * @see
-	 * org.github.jsla.core.monitor.TransactionMonitorService#addGroupConstraint
-	 * (java.lang.String, org.github.jsla.core.sla.Sla)
+	 * @param group
+	 *            the group name to add the SLA for.
+	 * @param sla
+	 *            the SLA to add.
 	 */
 	public void addGroupConstraint(String group, Sla sla) {
 		groupRateControl.addConstraint(group, sla);
 	}
 
-	/*
-	 * (non-Javadoc)
+	/**
+	 * Adds an anonymous SLA. This SLA will be used for anonymous users.
 	 * 
-	 * @see
-	 * org.github.jsla.core.monitor.TransactionMonitorService#addAnonymousConstraint
-	 * (org.github.jsla.core.sla.Sla)
+	 * @param sla
+	 *            the SLA to add.
 	 */
 	public void addAnonymousConstraint(Sla sla) {
 		anonymousRateControl.addConstraint(ANONYMOUS, sla);
@@ -81,7 +82,7 @@ public class TransactionMonitor implements TransactionMonitorService {
 	 * org.github.jsla.core.monitor.TransactionMonitorService#grant(org.github
 	 * .jsla.core.authority.Authority)
 	 */
-	public void grant(Authority authority) throws TransactionDeniedException {
+	public void grant(Authority authority) throws SlaDeniedException {
 
 		if(logger.isDebugEnabled()){
 			logger.debug("Grant " + authority);
@@ -100,10 +101,18 @@ public class TransactionMonitor implements TransactionMonitorService {
 				usernameRateControl.grant(authority.getUsername());
 			} catch (NoRateDefinedException e) {
 				// no rate defined for username, going with group
-				if(logger.isInfoEnabled()){
-					logger.info("Checking group access: " + authority.getGroup());
+				
+				if(authority.getGroup()!=null){
+					if(logger.isInfoEnabled()){
+						logger.info("Checking group access: " + authority.getGroup());
+					}
+					
+					groupRateControl.grant(authority.getGroup());
+				} else {
+					if(logger.isInfoEnabled()){
+						logger.info("Authority doesn't belong to a group, skipping group access");
+					}
 				}
-				groupRateControl.grant(authority.getGroup());
 			}
 		}
 

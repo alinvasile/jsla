@@ -15,7 +15,7 @@
  */
 package org.jsla.core;
 
-public class NoRateDefinedException extends TransactionDeniedException {
+public class NoRateDefinedException extends SlaDeniedException {
 
 	private static final long serialVersionUID = 3950739416650661920L;
 

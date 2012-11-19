@@ -1,4 +1,4 @@
-package org.github.jsla.example;
+package org.jsla.example;
 
 import org.jsla.core.authority.Authority;
 
@@ -15,5 +15,9 @@ public class AnonymousUser implements Authority {
     public boolean isAnonymous() {
         return true;
     }
+
+	public String[] getRoles() {
+		return null;
+	}
 
 }

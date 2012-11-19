@@ -15,7 +15,7 @@
  */
 package org.jsla.core;
 
-public class QuotaExceededException extends TransactionDeniedException {
+public class QuotaExceededException extends SlaDeniedException {
 
 	private static final long serialVersionUID = 1916679904275255841L;
 

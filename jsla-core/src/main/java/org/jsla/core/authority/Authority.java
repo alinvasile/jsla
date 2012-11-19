@@ -22,5 +22,7 @@ public interface Authority {
 	public String getGroup();
 
 	boolean isAnonymous();
+	
+	String[] getRoles();
 
 }

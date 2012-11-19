@@ -21,8 +21,7 @@ import static org.mockito.Mockito.when;
 import java.util.concurrent.TimeUnit;
 
 import org.jsla.core.authority.Authority;
-import org.jsla.core.monitor.TransactionMonitor;
-import org.jsla.core.monitor.TransactionMonitorService;
+import org.jsla.core.monitor.UsernameGroupTransactionMonitor;
 import org.jsla.core.sla.Sla;
 import org.jsla.core.sla.SlaValue;
 import org.junit.After;
@@ -35,13 +34,13 @@ import org.junit.Test;
  * @author Alin Vasile
  *
  */
-public class TestUserRate {
+public class TestUsernameGroupRate {
 
 	private Authority authority;
 	
 	private Authority anonymous;
 	
-	private TransactionMonitorService service;
+	private UsernameGroupTransactionMonitor service;
 	
 	@Before
 	public void setUp(){
@@ -53,7 +52,7 @@ public class TestUserRate {
 		anonymous = mock(Authority.class);
 		when(anonymous.isAnonymous()).thenReturn(true);
 		
-		service = new TransactionMonitor();
+		service = new UsernameGroupTransactionMonitor();
 	}
 	
 	@After

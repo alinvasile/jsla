@@ -101,12 +101,12 @@ public class RateControl {
 	 *            the user property, such as user or group name.
 	 * @throws NoRateDefinedException
 	 *             when no SLA is defined for the given user property.
-	 * @throws TransactionDeniedException
+	 * @throws SlaDeniedException
 	 *             when SLA is breached for the given user property, be it rate
 	 *             or quota.
 	 */
 	public void grant(String authority) throws NoRateDefinedException,
-			TransactionDeniedException {
+			SlaDeniedException {
 		if(logger.isDebugEnabled()){
 			logger.debug("Check access for " + authority );
 		}
