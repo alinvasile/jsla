@@ -2,7 +2,7 @@ package org.jsla.web.authority;
 
 import javax.servlet.ServletRequest;
 
-import org.jsla.core.authority.Authority;
+import org.jsla.core.Authority;
 
 public interface AuthorityProvider {
 

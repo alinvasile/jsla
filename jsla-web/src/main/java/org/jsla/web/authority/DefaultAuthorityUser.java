@@ -1,6 +1,6 @@
 package org.jsla.web.authority;
 
-import org.jsla.core.authority.Authority;
+import org.jsla.core.Authority;
 
 public class DefaultAuthorityUser implements Authority {
 

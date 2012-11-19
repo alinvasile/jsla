@@ -13,20 +13,16 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.jsla.core.monitor;
+package org.jsla.core;
 
-import org.jsla.core.RateControl;
-import org.jsla.core.SlaDeniedException;
-import org.jsla.core.authority.Authority;
+public interface Authority {
 
-public class RoleTransactionMonitor implements AccessMonitor {
+	public String getUsername();
 
-	protected RateControl roleRateControl = new RateControl();
-	protected RateControl anonymousRateControl = new RateControl();
+	public String getGroup();
+
+	boolean isAnonymous();
 	
-	public void grant(Authority authority) throws SlaDeniedException {
-		// TODO Auto-generated method stub
-		
-	}
+	String[] getRoles();
 
 }

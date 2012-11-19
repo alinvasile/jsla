@@ -13,19 +13,18 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.jsla.core.monitor;
+package org.jsla.core.engine;
 
+import org.jsla.core.AccessMonitor;
+import org.jsla.core.Authority;
 import org.jsla.core.NoRateDefinedException;
-import org.jsla.core.RateControl;
 import org.jsla.core.SlaDeniedException;
-import org.jsla.core.authority.Authority;
-import org.jsla.core.sla.Sla;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 /**
  * 
- * User/group name based enforcement of a SLA monitor.
+ * User/group name based enforcement of a SLA monitor. Allows unknown users to use a special rate control, for anonymous access.
  * 
  * @author Alin Vasile
  * @since 1.0
@@ -35,9 +34,9 @@ public class UsernameGroupTransactionMonitor implements AccessMonitor {
 
 	protected static final String ANONYMOUS = "ANONYMOUS";
 
-	protected RateControl usernameRateControl = new RateControl();
-	protected RateControl groupRateControl = new RateControl();
-	protected RateControl anonymousRateControl = new RateControl();
+	protected Constraint usernameRateControl = new RateQuotaConstraint();
+	protected Constraint groupRateControl = new RateQuotaConstraint();
+	protected Constraint anonymousRateControl = new RateQuotaConstraint();
 	
 	private static final Logger logger = LoggerFactory.getLogger(UsernameGroupTransactionMonitor.class);
 

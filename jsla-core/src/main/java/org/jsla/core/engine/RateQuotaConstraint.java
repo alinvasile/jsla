@@ -13,15 +13,17 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.jsla.core;
+package org.jsla.core.engine;
 
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
 import org.isomorphism.util.TokenBucket;
 import org.isomorphism.util.TokenBuckets;
-import org.jsla.core.sla.Sla;
-import org.jsla.core.sla.SlaValue;
+import org.jsla.core.NoRateDefinedException;
+import org.jsla.core.QuotaExceededException;
+import org.jsla.core.RateExceededException;
+import org.jsla.core.SlaDeniedException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -33,26 +35,21 @@ import org.slf4j.LoggerFactory;
  * @since 1.0
  * 
  */
-public class RateControl {
+public class RateQuotaConstraint implements Constraint {
 
 	/** A mapping between the user property and the defined SLAs. */
-	private Map<String, Sla> slaConstraints = new ConcurrentHashMap<String, Sla>();
+	protected final Map<String, Sla> slaConstraints = new ConcurrentHashMap<String, Sla>();
 
 	/** A mapping between the user property and the rate Token Bucket. */
-	private Map<String, TokenBucket> rateConstraints = new ConcurrentHashMap<String, TokenBucket>();
+	protected final Map<String, TokenBucket> rateConstraints = new ConcurrentHashMap<String, TokenBucket>();
 
 	/** A mapping between the user property and the quota Token Bucket. */
-	private Map<String, TokenBucket> quotaConstraints = new ConcurrentHashMap<String, TokenBucket>();
+	protected final Map<String, TokenBucket> quotaConstraints = new ConcurrentHashMap<String, TokenBucket>();
 	
-	private static final Logger logger = LoggerFactory.getLogger(RateControl.class);
+	protected static final Logger logger = LoggerFactory.getLogger(RateQuotaConstraint.class);
 
-	/**
-	 * Adds a SLA constraint for the given user property.
-	 * 
-	 * @param authority
-	 *            the user property, such as user or group name.
-	 * @param sla
-	 *            the SLA to add.
+	/* (non-Javadoc)
+	 * @see org.jsla.core.monitor.RateControl#addConstraint(java.lang.String, org.jsla.core.sla.Sla)
 	 */
 	public void addConstraint(String authority, Sla sla) {
 		
@@ -94,16 +91,8 @@ public class RateControl {
 		}
 	}
 
-	/**
-	 * Grant access based on the given user property.
-	 * 
-	 * @param authority
-	 *            the user property, such as user or group name.
-	 * @throws NoRateDefinedException
-	 *             when no SLA is defined for the given user property.
-	 * @throws SlaDeniedException
-	 *             when SLA is breached for the given user property, be it rate
-	 *             or quota.
+	/* (non-Javadoc)
+	 * @see org.jsla.core.monitor.RateControl#grant(java.lang.String)
 	 */
 	public void grant(String authority) throws NoRateDefinedException,
 			SlaDeniedException {
@@ -173,5 +162,6 @@ public class RateControl {
 		}
 
 	}
+
 
 }

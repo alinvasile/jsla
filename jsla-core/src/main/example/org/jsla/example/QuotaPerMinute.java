@@ -18,9 +18,9 @@ package org.jsla.example;
 import java.util.concurrent.TimeUnit;
 
 import org.jsla.core.SlaDeniedException;
-import org.jsla.core.monitor.UsernameGroupTransactionMonitor;
-import org.jsla.core.sla.Sla;
-import org.jsla.core.sla.SlaValue;
+import org.jsla.core.engine.Sla;
+import org.jsla.core.engine.SlaValue;
+import org.jsla.core.engine.UsernameGroupTransactionMonitor;
 
 /**
  * Example implementation for a quota of 5 requests/10 seconds. Rate will be ignored for this case. 

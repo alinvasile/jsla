@@ -13,10 +13,8 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.jsla.core.monitor;
+package org.jsla.core;
 
-import org.jsla.core.SlaDeniedException;
-import org.jsla.core.authority.Authority;
 
 /**
  * Matches authorities against SLAs.

@@ -20,10 +20,9 @@ import static org.mockito.Mockito.when;
 
 import java.util.concurrent.TimeUnit;
 
-import org.jsla.core.authority.Authority;
-import org.jsla.core.monitor.UsernameGroupTransactionMonitor;
-import org.jsla.core.sla.Sla;
-import org.jsla.core.sla.SlaValue;
+import org.jsla.core.engine.Sla;
+import org.jsla.core.engine.SlaValue;
+import org.jsla.core.engine.UsernameGroupTransactionMonitor;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;

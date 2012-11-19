@@ -1,6 +1,6 @@
 package org.jsla.example;
 
-import org.jsla.core.authority.Authority;
+import org.jsla.core.Authority;
 
 public class AnonymousUser implements Authority {
 
