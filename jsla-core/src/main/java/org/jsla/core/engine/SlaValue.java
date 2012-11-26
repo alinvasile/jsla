@@ -54,13 +54,15 @@ public class SlaValue {
 
 	/**
 	 * Creates a non-exceedable SLA value with the given amount of allowed
-	 * transactions in one second.
+	 * transactions in one time unit.
 	 * 
 	 * @param amount
 	 *            the number of allowed transactions in one second.
+	 * @param referenceUnit
+	 *            the time unit this interval is expressed.
 	 */
-	public SlaValue(long amount) {
-		this(amount, 1, TimeUnit.SECONDS, false);
+	public SlaValue(long amount,TimeUnit referenceUnit) {
+		this(amount, 1, referenceUnit, false);
 	}
 
 	/**
