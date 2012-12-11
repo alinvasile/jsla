@@ -14,11 +14,14 @@
 	    </init-param>
 	     <init-param>
 	      <param-name>sla.authority.provider</param-name>
-	      <param-value>org.jsla.web.authority.HttpBasicAuthorityProvider</param-value>
+	      <param-value>org.jsla.web.authority.AuthorizationHeaderAuthorityProvider</param-value>
 	    </init-param>
     </filter>
     <filter-mapping>
           <filter-name>SlaFilter</filter-name>
           <url-pattern>/*</url-pattern>
     </filter-mapping>
+    
+    
+   
 </web-app>

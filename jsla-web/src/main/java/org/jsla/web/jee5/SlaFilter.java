@@ -27,41 +27,67 @@ import javax.servlet.http.HttpServletRequest;
 
 import org.jsla.core.Authority;
 import org.jsla.core.SlaDeniedException;
+import org.jsla.core.logging.AtomicRequestId;
 import org.jsla.web.AccessEngineFactory;
 import org.jsla.web.authority.AuthorityProvider;
 import org.jsla.web.context.AccessHierarchy;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.slf4j.MDC;
 
 public class SlaFilter implements Filter {
 
     private AccessHierarchy monitor;
-    
+
     private AuthorityProvider authorityProvider;
+
+    private static final Logger logger = LoggerFactory.getLogger(SlaFilter.class);
 
     public void destroy() {
 
     }
 
     public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException,
-            ServletException {
+    ServletException {
 
-        Authority authority = authorityProvider.retrieveAuthority(request);
-        
+        MDC.put("SLA_REQUEST_ID", AtomicRequestId.nextRequestId());
+
         try{
-            monitor.grant(((HttpServletRequest)request).getRequestURI(),authority);
-        } catch(SlaDeniedException e){
-            e.printStackTrace();
-            throw new ServletException(e);
-            //TODO define an error page
+
+            Authority authority = authorityProvider.retrieveAuthority(request);
+
+            String fullRequestURI = ((HttpServletRequest)request).getRequestURI();
+            String contextPath =  ((HttpServletRequest)request).getContextPath();
+
+            String requestURI = fullRequestURI.substring(fullRequestURI.indexOf(contextPath) + contextPath.length());
+
+            if(logger.isDebugEnabled()){
+                logger.debug("fullRequestURI: " + fullRequestURI);
+                logger.debug("contextPath: " + contextPath);
+                logger.debug("requestURI: " + requestURI);
+            }
+
+            logger.info("Authorise " + authority + " for <" + requestURI + ">");
+
+            try{
+                monitor.grant(requestURI,authority);
+            } catch(SlaDeniedException e){
+                //e.printStackTrace();
+                throw new ServletException(e);
+                //TODO define an error page
+            }
+
+            chain.doFilter(request, response);
+        } finally {
+            MDC.remove("SLA_REQUEST_ID");
         }
-        
-        chain.doFilter(request, response);
 
     }
 
     public void init(FilterConfig config) throws ServletException {
         String monitorProviderClass = config.getInitParameter("sla.monitor.provider");
         String authorityProviderClass = config.getInitParameter("sla.authority.provider");
-        
+
         try {
             AccessEngineFactory factory = (AccessEngineFactory) (Class.forName(monitorProviderClass).newInstance());
             this.monitor = factory.buildAccessMonitor(config.getServletContext());
@@ -69,9 +95,9 @@ public class SlaFilter implements Filter {
         } catch (Exception e) {
             throw new ServletException(e);
         } 
-        
-        
-       
+
+
+
     }
 
 }

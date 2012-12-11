@@ -100,14 +100,7 @@ public class RateQuotaConstraint implements Constraint {
      * @see org.jsla.core.monitor.RateControl#grant(java.lang.String)
      */
     public void grant(String authority) throws NoRateDefinedException, SlaDeniedException {
-        MDC.put("SLA_REQUEST_ID", AtomicRequestId.nextRequestId());
-        
-        try{
-            grantInternally(authority);
-        } finally {
-            MDC.remove("SLA_REQUEST_ID");
-        }
-        
+        grantInternally(authority);
     }
     
     private void grantInternally(String authority){

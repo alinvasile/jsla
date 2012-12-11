@@ -38,7 +38,7 @@ public class UsernameGroupMonitorFactory implements AccessEngineFactory {
         Sla silverGroupSla =  Sla.createSlaRateWithQuotaUnlimited(new SlaValue(15,TimeUnit.SECONDS));
         monitor.addGroupConstraint("silver", silverGroupSla);
        
-        engine.add("/", monitor);
+        engine.add("/*", monitor);
     }
     
     private void addReportsAcessMonitor(AccessHierarchy engine){

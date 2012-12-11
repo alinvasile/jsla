@@ -19,14 +19,30 @@ import javax.servlet.ServletRequest;
 import javax.servlet.http.HttpServletRequest;
 
 import org.jsla.core.Authority;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class HttpBasicAuthorityProvider implements AuthorityProvider {
 
+    private static final Logger logger = LoggerFactory.getLogger(HttpBasicAuthorityProvider.class);
+    
     public Authority retrieveAuthority(ServletRequest request) {
 
         if (request instanceof HttpServletRequest) {
+            
+            if(logger.isDebugEnabled()){
+                logger.debug("retrieveAuthority");
+            }
+            
             HttpServletRequest httpServletRequest = (HttpServletRequest) request;
+            
             String user = httpServletRequest.getRemoteUser();
+            
+            if(logger.isDebugEnabled()){
+                logger.debug("Found user: " + user);
+            }
+            
+            
             if (user != null) {
                 return DefaultAuthorityUser.createUsernameOnlyUser(user);
             }
