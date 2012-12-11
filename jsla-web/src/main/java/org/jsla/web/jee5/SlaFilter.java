@@ -23,16 +23,17 @@ import javax.servlet.FilterConfig;
 import javax.servlet.ServletException;
 import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
+import javax.servlet.http.HttpServletRequest;
 
-import org.jsla.core.AccessMonitor;
 import org.jsla.core.Authority;
 import org.jsla.core.SlaDeniedException;
-import org.jsla.web.MonitorFactory;
+import org.jsla.web.AccessEngineFactory;
 import org.jsla.web.authority.AuthorityProvider;
+import org.jsla.web.context.AccessHierarchy;
 
 public class SlaFilter implements Filter {
 
-    private AccessMonitor monitor;
+    private AccessHierarchy monitor;
     
     private AuthorityProvider authorityProvider;
 
@@ -46,9 +47,11 @@ public class SlaFilter implements Filter {
         Authority authority = authorityProvider.retrieveAuthority(request);
         
         try{
-            monitor.grant(authority);
+            monitor.grant(((HttpServletRequest)request).getRequestURI(),authority);
         } catch(SlaDeniedException e){
             e.printStackTrace();
+            throw new ServletException(e);
+            //TODO define an error page
         }
         
         chain.doFilter(request, response);
@@ -60,7 +63,7 @@ public class SlaFilter implements Filter {
         String authorityProviderClass = config.getInitParameter("sla.authority.provider");
         
         try {
-            MonitorFactory factory = (MonitorFactory) (Class.forName(monitorProviderClass).newInstance());
+            AccessEngineFactory factory = (AccessEngineFactory) (Class.forName(monitorProviderClass).newInstance());
             this.monitor = factory.buildAccessMonitor(config.getServletContext());
             this.authorityProvider = (AuthorityProvider) (Class.forName(authorityProviderClass).newInstance());
         } catch (Exception e) {

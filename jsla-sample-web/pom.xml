@@ -2,7 +2,7 @@
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>com.jsla.sample</groupId>
-	<artifactId>test-web</artifactId>
+	<artifactId>jsla-sample-web</artifactId>
 	<packaging>war</packaging>
 	<version>1.0-SNAPSHOT</version>
 	<name>test-web Maven Webapp</name>
@@ -29,7 +29,7 @@
 			<artifactId>slf4j-log4j12</artifactId>
 			<version>1.6.6</version>
 			<type>jar</type>
-		</dependency>	
+		</dependency>
 		<dependency>
 			<groupId>junit</groupId>
 			<artifactId>junit</artifactId>

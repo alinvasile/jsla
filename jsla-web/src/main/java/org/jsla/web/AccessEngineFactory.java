@@ -17,10 +17,10 @@ package org.jsla.web;
 
 import javax.servlet.ServletContext;
 
-import org.jsla.core.AccessMonitor;
+import org.jsla.web.context.AccessHierarchy;
 
-public interface MonitorFactory {
+public interface AccessEngineFactory {
     
-    AccessMonitor buildAccessMonitor(ServletContext context);
+    AccessHierarchy buildAccessMonitor(ServletContext context);
 
 }

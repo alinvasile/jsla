@@ -22,17 +22,17 @@ import org.jsla.core.Authority;
 
 public class HttpBasicAuthorityProvider implements AuthorityProvider {
 
-	public Authority retrieveAuthority(ServletRequest request) {
-		
-		if(request instanceof HttpServletRequest){
-			HttpServletRequest httpServletRequest = (HttpServletRequest)request;
-			String user = httpServletRequest.getRemoteUser();
-			if(user != null){
-				return DefaultAuthorityUser.createUsernameOnlyUser(user);
-			}
-		}
-		
-		return DefaultAuthorityUser.createAnonymousUser();
-	}
+    public Authority retrieveAuthority(ServletRequest request) {
+
+        if (request instanceof HttpServletRequest) {
+            HttpServletRequest httpServletRequest = (HttpServletRequest) request;
+            String user = httpServletRequest.getRemoteUser();
+            if (user != null) {
+                return DefaultAuthorityUser.createUsernameOnlyUser(user);
+            }
+        }
+
+        return DefaultAuthorityUser.createAnonymousUser();
+    }
 
 }
