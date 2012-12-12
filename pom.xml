@@ -27,7 +27,7 @@
 -->
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
 <modelVersion>4.0.0</modelVersion>
-<groupId>org.jsla</groupId>
+<groupId>com.github.alinvasile.jsla</groupId>
 <artifactId>project</artifactId>
 <version>1</version>
 <packaging>pom</packaging>
@@ -50,8 +50,8 @@
 
 <properties>
 
-<jsla-core.version>1.0-SNAPSHOT</jsla-core.version>
-<jsla-web.version>1.0-SNAPSHOT</jsla-web.version>
+<jsla-core.version>0.0.1-SNAPSHOT</jsla-core.version>
+<jsla-web.version>0.0.1-SNAPSHOT</jsla-web.version>
 
 <junit.version>4.8.1</junit.version>
 <mockito.version>1.8.5</mockito.version>

@@ -30,24 +30,24 @@
 		
 	<parent>
 <artifactId>project</artifactId>
-<groupId>org.jsla</groupId>
+<groupId>com.github.alinvasile.jsla</groupId>
 <version>1</version>
 <relativePath>../pom.xml</relativePath>
 </parent>
-	<groupId>com.jsla.sample</groupId>
+	
 	<artifactId>jsla-sample-web</artifactId>
 	<packaging>war</packaging>
-	<version>1.0-alpha2-SNAPSHOT</version>
+	<version>0.0.1-SNAPSHOT</version>
 	<name>test-web Maven Webapp</name>
 	<url>http://maven.apache.org</url>
 	<dependencies>
 		<dependency>
-			<groupId>org.jsla</groupId>
+			<groupId>com.github.alinvasile.jsla</groupId>
 			<artifactId>jsla-core</artifactId>
 			<version>${jsla-core.version}</version>
 		</dependency>
 		<dependency>
-			<groupId>org.jsla</groupId>
+			<groupId>com.github.alinvasile.jsla</groupId>
 			<artifactId>jsla-web</artifactId>
 			<version>${jsla-web.version}</version>
 		</dependency>

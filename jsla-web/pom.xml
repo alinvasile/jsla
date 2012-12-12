@@ -31,14 +31,13 @@
 	
 	<parent>
 <artifactId>project</artifactId>
-<groupId>org.jsla</groupId>
+<groupId>com.github.alinvasile.jsla</groupId>
 <version>1</version>
 <relativePath>../pom.xml</relativePath>
 </parent>
 
-	<groupId>org.jsla</groupId>
 	<artifactId>jsla-web</artifactId>
-	<version>1.0-alpha2-SNAPSHOT</version>
+	<version>0.0.1-SNAPSHOT</version>
 	<packaging>jar</packaging>
 
 	<name>jsla-web</name>
@@ -83,7 +82,7 @@
 	</build>
 	<dependencies>
 		<dependency>
-			<groupId>org.jsla</groupId>
+			<groupId>com.github.alinvasile.jsla</groupId>
 			<artifactId>jsla-core</artifactId>
 			<version>${jsla-core.version}</version>
 		</dependency>
