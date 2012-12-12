@@ -1,68 +1,70 @@
-<!--
+<!-- ==================================================================== 
+	Licensed to the Apache Software Foundation (ASF) under one or more contributor 
+	license agreements. See the NOTICE file distributed with this work for additional 
+	information regarding copyright ownership. The ASF licenses this file to 
+	you under the Apache License, Version 2.0 (the "License"); you may not use 
+	this file except in compliance with the License. You may obtain a copy of 
+	the License at http://www.apache.org/licenses/LICENSE-2.0 Unless required 
+	by applicable law or agreed to in writing, software distributed under the 
+	License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS 
+	OF ANY KIND, either express or implied. See the License for the specific 
+	language governing permissions and limitations under the License. ==================================================================== 
+	This software consists of voluntary contributions made by many individuals 
+	on behalf of the Apache Software Foundation. For more information on the 
+	Apache Software Foundation, please see http://www.apache.org -->
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>com.github.alinvasile.jsla</groupId>
+	<artifactId>project</artifactId>
+	<version>1</version>
+	<packaging>pom</packaging>
+	<name>jSLA</name>
+	<url>https://github.com/alinvasile/jsla</url>
+	<description>Java SLA Rules</description>
+	<inceptionYear>2012</inceptionYear>
 
-   ====================================================================
-   Licensed to the Apache Software Foundation (ASF) under one
-   or more contributor license agreements.  See the NOTICE file
-   distributed with this work for additional information
-   regarding copyright ownership.  The ASF licenses this file
-   to you under the Apache License, Version 2.0 (the
-   "License"); you may not use this file except in compliance
-   with the License.  You may obtain a copy of the License at
-
-     http://www.apache.org/licenses/LICENSE-2.0
-
-   Unless required by applicable law or agreed to in writing,
-   software distributed under the License is distributed on an
-   "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
-   KIND, either express or implied.  See the License for the
-   specific language governing permissions and limitations
-   under the License.
-   ====================================================================
-
-   This software consists of voluntary contributions made by many
-   individuals on behalf of the Apache Software Foundation.  For more
-   information on the Apache Software Foundation, please see
-   http://www.apache.org
- 
--->
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
-<modelVersion>4.0.0</modelVersion>
-<groupId>com.github.alinvasile.jsla</groupId>
-<artifactId>project</artifactId>
-<version>1</version>
-<packaging>pom</packaging>
-<name>jSLA</name>
-<url>https://github.com/alinvasile/jsla</url>
-<description>Java SLA Rules</description>
-<inceptionYear>2012</inceptionYear>
-
-<scm>
+	<scm>
 		<connection>scm:git:git://github.com/alinvasile/jsla.git</connection>
 		<url>scm:git:git://github.com/alinvasile/jsla.git</url>
 		<developerConnection>scm:git:git://github.com/alinvasile/jsla.git</developerConnection>
 	</scm>
 
-<modules>
-<module>jsla-core</module>
-<module>jsla-web</module>
-<module>jsla-sample-web</module>
-</modules>
+	<distributionManagement>
+		<snapshotRepository>
+			<id>sonatype-nexus-snapshots</id>
+			<name>Sonatype Nexus snapshot repository</name>
+			<url>https://oss.sonatype.org/content/repositories/snapshots</url>
+		</snapshotRepository>
 
-<properties>
+		<repository>
+			<id>sonatype-nexus-staging</id>
+			<name>Sonatype Nexus release repository</name>
+			<url>https://oss.sonatype.org/service/local/staging/deploy/maven2/</url>
+		</repository>
+	</distributionManagement>
 
-<jsla-core.version>0.0.1-SNAPSHOT</jsla-core.version>
-<jsla-web.version>0.0.1-SNAPSHOT</jsla-web.version>
+	<modules>
+		<module>jsla-core</module>
+		<module>jsla-web</module>
+		<module>jsla-sample-web</module>
+	</modules>
 
-<junit.version>4.8.1</junit.version>
-<mockito.version>1.8.5</mockito.version>
-<token-bucket.version>1.1</token-bucket.version>
-<slf4j-api.version>1.6.6</slf4j-api.version>
-<jcl-over-slf4j.version>1.6.6</jcl-over-slf4j.version>
-<slf4j-log4j12.version>1.6.6</slf4j-log4j12.version>
-<log4j.version>1.2.15</log4j.version>
-<commons-codec.version>20041127.091804</commons-codec.version>
-<servlet-api.version>2.5</servlet-api.version>
-</properties>
+	<properties>
+
+		<jsla-core.version>0.0.1-SNAPSHOT</jsla-core.version>
+		<jsla-web.version>0.0.1-SNAPSHOT</jsla-web.version>
+
+		<junit.version>4.8.1</junit.version>
+		<mockito.version>1.8.5</mockito.version>
+		<token-bucket.version>1.1</token-bucket.version>
+		<slf4j-api.version>1.6.6</slf4j-api.version>
+		<jcl-over-slf4j.version>1.6.6</jcl-over-slf4j.version>
+		<slf4j-log4j12.version>1.6.6</slf4j-log4j12.version>
+		<log4j.version>1.2.15</log4j.version>
+		<commons-codec.version>20041127.091804</commons-codec.version>
+		<servlet-api.version>2.5</servlet-api.version>
+	</properties>
 
 
 </project>
