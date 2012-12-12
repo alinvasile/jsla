@@ -10,13 +10,13 @@
           <string>WEB-INF/web.xml</string>
           <string>WEB-INF/classes/log4j.properties</string>
           <string>WEB-INF/classes/org/jsla/web/jee5/UsernameGroupMonitorFactory.class</string>
-          <string>WEB-INF/lib/jsla-core-0.0.1-SNAPSHOT.jar</string>
+          <string>WEB-INF/lib/jsla-core-1.0-SNAPSHOT.jar</string>
           <string>WEB-INF/lib/token-bucket-1.1.jar</string>
           <string>WEB-INF/lib/guava-11.0.1.jar</string>
           <string>WEB-INF/lib/jsr305-1.3.9.jar</string>
           <string>WEB-INF/lib/slf4j-api-1.6.6.jar</string>
           <string>WEB-INF/lib/jcl-over-slf4j-1.6.6.jar</string>
-          <string>WEB-INF/lib/jsla-web-0.0.1-SNAPSHOT.jar</string>
+          <string>WEB-INF/lib/jsla-web-1.0-SNAPSHOT.jar</string>
           <string>WEB-INF/lib/commons-codec-20041127.091804.jar</string>
           <string>WEB-INF/lib/slf4j-log4j12-1.6.6.jar</string>
           <string>WEB-INF/lib/log4j-1.2.17.jar</string>
@@ -29,25 +29,25 @@
       <dependency>
         <groupId>org.jsla</groupId>
         <artifactId>jsla-core</artifactId>
-        <version>0.0.1-SNAPSHOT</version>
+        <version>1.0-SNAPSHOT</version>
         <type>jar</type>
         <scope>compile</scope>
         <exclusions/>
         <optional>false</optional>
       </dependency>
-      <targetFileName>jsla-core-0.0.1-SNAPSHOT.jar</targetFileName>
+      <targetFileName>jsla-core-1.0-SNAPSHOT.jar</targetFileName>
     </org.apache.maven.plugin.war.util.DependencyInfo>
     <org.apache.maven.plugin.war.util.DependencyInfo>
       <dependency>
         <groupId>org.jsla</groupId>
         <artifactId>jsla-web</artifactId>
-        <version>0.0.1-SNAPSHOT</version>
+        <version>1.0-SNAPSHOT</version>
         <type>jar</type>
         <scope>compile</scope>
         <exclusions/>
         <optional>false</optional>
       </dependency>
-      <targetFileName>jsla-web-0.0.1-SNAPSHOT.jar</targetFileName>
+      <targetFileName>jsla-web-1.0-SNAPSHOT.jar</targetFileName>
     </org.apache.maven.plugin.war.util.DependencyInfo>
     <org.apache.maven.plugin.war.util.DependencyInfo>
       <dependency>

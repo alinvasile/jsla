@@ -59,9 +59,9 @@
 	</properties>
 
 	<scm>
-		<url>http://github.com/alinvasile/jsla</url>
-		<connection>scm:git:git@github.com:alinvasile/jsla.git</connection>
-		<developerConnection>scm:git:git@github.com:alinvasile/jsla.git</developerConnection>
+		<connection>scm:git:git://github.com/alinvasile/jsla.git</connection>
+		<url>scm:git:git://github.com/alinvasile/jsla.git</url>
+		<developerConnection>scm:git:git://github.com/alinvasile/jsla.git</developerConnection>
 	</scm>
 
 	<build>
@@ -75,6 +75,11 @@
 					<target>1.5</target>
 				</configuration>
 			</plugin>
+			<plugin>
+		        <groupId>org.apache.maven.plugins</groupId>
+		        <artifactId>maven-release-plugin</artifactId>
+		        <version>2.0</version>
+		      </plugin>
 		</plugins>
 	</build>
 	<dependencies>
