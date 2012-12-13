@@ -13,8 +13,7 @@
 	This software consists of voluntary contributions made by many individuals 
 	on behalf of the Apache Software Foundation. For more information on the 
 	Apache Software Foundation, please see http://www.apache.org . -->
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 
 	<parent>
 		<artifactId>project</artifactId>
@@ -26,7 +25,7 @@
 	<modelVersion>4.0.0</modelVersion>
 
 	<artifactId>jsla-core</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
+	<version>0.0.1-alpha1</version>
 	<packaging>jar</packaging>
 
 	<name>jsla-core</name>
