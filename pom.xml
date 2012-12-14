@@ -48,6 +48,21 @@
 		<module>jsla-web</module>
 		<module>jsla-sample-web</module>
 	</modules>
+	
+	<contributors>
+    <contributor>
+      <name>Alin Vasile</name>
+      <email>alinachegalati@gmail.com</email>
+      <url/>
+      <roles>
+        <role>developer</role>
+      </roles>
+      <timezone>+2</timezone>
+      <properties>
+        <gtalk>alinachegalati@gmail.com</gtalk>
+      </properties>
+    </contributor>
+  </contributors>
 
 	<properties>
 
