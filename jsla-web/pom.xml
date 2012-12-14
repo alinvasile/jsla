@@ -37,7 +37,7 @@
 </parent>
 
 	<artifactId>jsla-web</artifactId>
-	<version>0.0.1-alpha1-SNAPSHOT</version>
+	<version>0.0.1-alpha1</version>
 	<packaging>jar</packaging>
 
 	<name>jsla-web</name>
