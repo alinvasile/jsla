@@ -23,6 +23,14 @@
 	<description>Java SLA Rules</description>
 	<inceptionYear>2012</inceptionYear>
 
+	<licenses>
+		<license>
+			<name>The Apache Software License, Version 2.0</name>
+			<url>http://www.apache.org/licenses/LICENSE-2.0</url>
+			<distribution>repo</distribution>
+		</license>
+	</licenses>
+
 	<scm>
 		<connection>scm:git:git://github.com/alinvasile/jsla.git</connection>
 		<url>scm:git:git://github.com/alinvasile/jsla.git</url>
@@ -49,21 +57,14 @@
 		<module>jsla-sample-web</module>
 	</modules>
 	
-	<contributors>
-    <contributor>
+	<developers>
+    <developer>
+      <id>alinvasile</id>
       <name>Alin Vasile</name>
       <email>alinachegalati@gmail.com</email>
-      <url/>
-      <roles>
-        <role>developer</role>
-      </roles>
-      <timezone>+2</timezone>
-      <properties>
-        <gtalk>alinachegalati@gmail.com</gtalk>
-      </properties>
-    </contributor>
-  </contributors>
-
+    </developer>
+  </developers>
+	
 	<properties>
 
 		<jsla-core.version>0.0.1-alpha1-SNAPSHOT</jsla-core.version>
