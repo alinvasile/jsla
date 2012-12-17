@@ -23,6 +23,14 @@
 	<description>Java SLA Rules</description>
 	<inceptionYear>2012</inceptionYear>
 
+	<licenses>
+		<license>
+			<name>The Apache Software License, Version 2.0</name>
+			<url>http://www.apache.org/licenses/LICENSE-2.0</url>
+			<distribution>repo</distribution>
+		</license>
+	</licenses>
+
 	<scm>
 		<connection>scm:git:git://github.com/alinvasile/jsla.git</connection>
 		<url>scm:git:git://github.com/alinvasile/jsla.git</url>
@@ -49,21 +57,69 @@
 		<module>jsla-sample-web</module>
 	</modules>
 	
-	<contributors>
-    <contributor>
+		<profiles>
+		<profile>
+			<id>release-sign-artifacts</id>
+			<activation>
+				<property>
+					<name>performRelease</name>
+					<value>true</value>
+				</property>
+			</activation>
+			<build>
+				<plugins>
+					<plugin>
+						<groupId>org.apache.maven.plugins</groupId>
+						<artifactId>maven-gpg-plugin</artifactId>
+						<version>1.4</version>
+						<configuration>
+							<passphrase>${gpg.passphrase}</passphrase>
+						</configuration>
+						<executions>
+							<execution>
+								<id>sign-artifacts</id>
+								<phase>verify</phase>
+								<goals>
+									<goal>sign</goal>
+								</goals>
+							</execution>
+						</executions>
+					</plugin>
+				</plugins>
+			</build>
+		</profile>
+		<profile>
+      <id>release-profile</id>
+
+      <activation>
+        <property>
+          <name>performRelease</name>
+          <value>true</value>
+        </property>
+      </activation>
+
+      <build>
+        <plugins>
+          <plugin>
+            <inherited>true</inherited>
+            <artifactId>maven-deploy-plugin</artifactId>
+            <configuration>
+              <updateReleaseInfo>true</updateReleaseInfo>
+            </configuration>
+          </plugin>
+        </plugins>
+      </build>
+    </profile>
+	</profiles>
+	
+	<developers>
+    <developer>
+      <id>alinvasile</id>
       <name>Alin Vasile</name>
       <email>alinachegalati@gmail.com</email>
-      <url/>
-      <roles>
-        <role>developer</role>
-      </roles>
-      <timezone>+2</timezone>
-      <properties>
-        <gtalk>alinachegalati@gmail.com</gtalk>
-      </properties>
-    </contributor>
-  </contributors>
-
+    </developer>
+  </developers>
+	
 	<properties>
 
 		<jsla-core.version>0.0.1-alpha1-SNAPSHOT</jsla-core.version>

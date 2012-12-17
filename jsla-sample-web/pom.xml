@@ -37,7 +37,7 @@
 	
 	<artifactId>jsla-sample-web</artifactId>
 	<packaging>war</packaging>
-	<version>0.0.1-alpha1-SNAPSHOT</version>
+	<version>0.0.1-alpha2-SNAPSHOT</version>
 	<name>test-web Maven Webapp</name>
 	<url>http://maven.apache.org</url>
 	
@@ -184,7 +184,7 @@
 		<dependency>
 			<groupId>com.github.alinvasile.jsla</groupId>
 			<artifactId>jsla-web</artifactId>
-			<version>${jsla-web.version}</version>
+			<version>0.0.1-alpha2-SNAPSHOT</version>
 		</dependency>
 		<dependency>
 			<groupId>commons-codec</groupId>
