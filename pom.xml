@@ -53,8 +53,7 @@
 
 	<modules>
 		<module>jsla-core</module>
-		<module>jsla-web</module>
-		<module>jsla-sample-web</module>
+		<module>jsla-web</module>		
 	</modules>
 	
 		<profiles>

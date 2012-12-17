@@ -29,10 +29,10 @@
 	<modelVersion>4.0.0</modelVersion>
 		
 	<parent>
-<artifactId>project</artifactId>
+<artifactId>jsla</artifactId>
 <groupId>com.github.alinvasile.jsla</groupId>
 <version>1</version>
-<relativePath>../pom.xml</relativePath>
+<relativePath>../../pom.xml</relativePath>
 </parent>
 	
 	<artifactId>jsla-sample-web</artifactId>
