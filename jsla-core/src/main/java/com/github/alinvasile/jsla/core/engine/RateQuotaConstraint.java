@@ -22,13 +22,11 @@ import org.isomorphism.util.TokenBucket;
 import org.isomorphism.util.TokenBuckets;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.slf4j.MDC;
 
 import com.github.alinvasile.jsla.core.NoRateDefinedException;
 import com.github.alinvasile.jsla.core.QuotaExceededException;
 import com.github.alinvasile.jsla.core.RateExceededException;
 import com.github.alinvasile.jsla.core.SlaDeniedException;
-import com.github.alinvasile.jsla.core.logging.AtomicRequestId;
 
 /**
  * Maps a user property (username, group name) to a SLA. Internally it uses the
@@ -54,8 +52,9 @@ public class RateQuotaConstraint implements Constraint {
     /*
      * (non-Javadoc)
      * 
-     * @see com.github.alinvasile.jsla.core.monitor.RateControl#addConstraint(java.lang.String,
-     * com.github.alinvasile.jsla.core.sla.Sla)
+     * @see
+     * com.github.alinvasile.jsla.core.monitor.RateControl#addConstraint(java
+     * .lang.String, com.github.alinvasile.jsla.core.sla.Sla)
      */
     public void addConstraint(String authority, Sla sla) {
 
@@ -98,17 +97,19 @@ public class RateQuotaConstraint implements Constraint {
     /*
      * (non-Javadoc)
      * 
-     * @see com.github.alinvasile.jsla.core.monitor.RateControl#grant(java.lang.String)
+     * @see
+     * com.github.alinvasile.jsla.core.monitor.RateControl#grant(java.lang.String
+     * )
      */
     public void grant(String authority) throws NoRateDefinedException, SlaDeniedException {
         grantInternally(authority);
     }
-    
-    private void grantInternally(String authority){
+
+    private void grantInternally(String authority) {
         if (logger.isDebugEnabled()) {
             logger.debug("Check access for " + authority);
         }
-        
+
         Sla sla = slaConstraints.get(authority);
 
         if (logger.isDebugEnabled()) {

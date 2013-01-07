@@ -15,14 +15,32 @@
  */
 package com.github.alinvasile.jsla.core;
 
+/**
+ * 
+ * Represents a user accessing a certain resource.
+ * 
+ * @author Alin Vasile @ since 1.0
+ */
 public interface Authority {
 
-	public String getUsername();
+    /**
+     * @return the username used when accessing a resource.
+     */
+    public String getUsername();
 
-	public String getGroup();
+    /**
+     * @return the group name this authority belongs to.
+     */
+    public String getGroup();
 
-	boolean isAnonymous();
-	
-	String[] getRoles();
+    /**
+     * @return true if the user is anonymous (i.e. no username), false otherwise.
+     */
+    boolean isAnonymous();
+
+    /**
+     * @return the role names this authority has.
+     */
+    String[] getRoles();
 
 }

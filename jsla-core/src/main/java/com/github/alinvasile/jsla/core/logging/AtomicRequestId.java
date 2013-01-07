@@ -17,13 +17,25 @@ package com.github.alinvasile.jsla.core.logging;
 
 import java.util.concurrent.atomic.AtomicLong;
 
+/**
+ * Utility class used for generating unique request ids useful in logging.
+ * 
+ * @author Alin Vasile
+ * @since 1.0
+ * 
+ */
 public class AtomicRequestId {
 
     private static final AtomicLong requestId = new AtomicLong(0);
-    
-    public static String nextRequestId(){
+
+    /**
+     * Increments and returns the next request id.
+     * 
+     * @return the new request id value in 8-digit hexa value
+     */
+    public static String nextRequestId() {
         long value = requestId.incrementAndGet();
-        return String.format("%08x",value);
+        return String.format("%08x", value);
     }
-    
+
 }

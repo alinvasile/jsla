@@ -40,76 +40,74 @@ package com.github.alinvasile.jsla.core.engine;
  */
 public class Sla {
 
-	/** the SLA rate (frequency) */
-	private final SlaValue rate;
+    /** the SLA rate (frequency) */
+    private final SlaValue rate;
 
-	/** the SLA quota (quantity) */
-	private final SlaValue quota;
+    /** the SLA quota (quantity) */
+    private final SlaValue quota;
 
-	/**
-	 * Constructs an SLA with the given rate and quota.
-	 * 
-	 * @param rate
-	 *            the SLA rate
-	 * @param quota
-	 *            the SLA quota
-	 */
-	public Sla(SlaValue rate, SlaValue quota) {
-		if (rate == null) {
-			throw new IllegalArgumentException("rate cannot be null");
-		}
+    /**
+     * Constructs an SLA with the given rate and quota.
+     * 
+     * @param rate
+     *            the SLA rate
+     * @param quota
+     *            the SLA quota
+     */
+    public Sla(SlaValue rate, SlaValue quota) {
+        if (rate == null) {
+            throw new IllegalArgumentException("rate cannot be null");
+        }
 
-		if (quota == null) {
-			throw new IllegalArgumentException("quota cannot be null");
-		}
+        if (quota == null) {
+            throw new IllegalArgumentException("quota cannot be null");
+        }
 
-		this.rate = rate;
-		this.quota = quota;
-	}
+        this.rate = rate;
+        this.quota = quota;
+    }
 
-	public SlaValue getRate() {
-		return rate;
-	}
+    public SlaValue getRate() {
+        return rate;
+    }
 
-	public SlaValue getQuota() {
-		return quota;
-	}
+    public SlaValue getQuota() {
+        return quota;
+    }
 
-	/**
-	 * Constructs a SLA value with the given rate and an unlimited quota.
-	 * 
-	 * @param rate
-	 *            the rate defined for this SLA.
-	 * @return the built SLA value.
-	 */
-	public static Sla createSlaRateWithQuotaUnlimited(SlaValue rate) {
-		if (rate == null) {
-			throw new IllegalArgumentException("rate cannot be null");
-		}
+    /**
+     * Constructs a SLA value with the given rate and an unlimited quota.
+     * 
+     * @param rate
+     *            the rate defined for this SLA.
+     * @return the built SLA value.
+     */
+    public static Sla createSlaRateWithQuotaUnlimited(SlaValue rate) {
+        if (rate == null) {
+            throw new IllegalArgumentException("rate cannot be null");
+        }
 
-		return new Sla(rate, SlaValue.UNLIMITED);
-	}
+        return new Sla(rate, SlaValue.UNLIMITED);
+    }
 
-	/**
-	 * Constructs a SLA value with the given quota and an unlimited rate.
-	 * 
-	 * @param quota
-	 *            the quota defined for this SLA.
-	 * @return the built SLA value.
-	 */
-	public static Sla createSlaQuotaWithRateUnlimited(SlaValue quota) {
-		if (quota == null) {
-			throw new IllegalArgumentException("quota cannot be null");
-		}
+    /**
+     * Constructs a SLA value with the given quota and an unlimited rate.
+     * 
+     * @param quota
+     *            the quota defined for this SLA.
+     * @return the built SLA value.
+     */
+    public static Sla createSlaQuotaWithRateUnlimited(SlaValue quota) {
+        if (quota == null) {
+            throw new IllegalArgumentException("quota cannot be null");
+        }
 
-		return new Sla(SlaValue.UNLIMITED, quota);
-	}
+        return new Sla(SlaValue.UNLIMITED, quota);
+    }
 
-	@Override
-	public String toString() {
-		return "Sla [rate=" + rate + ", quota=" + quota + "]";
-	}
-	
-	
+    @Override
+    public String toString() {
+        return "Sla [rate=" + rate + ", quota=" + quota + "]";
+    }
 
 }

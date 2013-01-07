@@ -15,24 +15,32 @@
  */
 package com.github.alinvasile.jsla.core;
 
+/**
+ * Exception thrown when there is a rate is exceeded for the authority accessing a
+ * sla-protected resource.
+ * 
+ * @author Alin Vasile
+ * @since 1.0
+ * 
+ */
 public class RateExceededException extends SlaDeniedException {
 
-	private static final long serialVersionUID = 5819722360779240199L;
+    private static final long serialVersionUID = 5819722360779240199L;
 
-	public RateExceededException() {
-		super();
-	}
+    public RateExceededException() {
+        super();
+    }
 
-	public RateExceededException(String arg0, Throwable arg1) {
-		super(arg0, arg1);
-	}
+    public RateExceededException(String arg0, Throwable arg1) {
+        super(arg0, arg1);
+    }
 
-	public RateExceededException(String arg0) {
-		super(arg0);
-	}
+    public RateExceededException(String arg0) {
+        super(arg0);
+    }
 
-	public RateExceededException(Throwable arg0) {
-		super(arg0);
-	}
-	
+    public RateExceededException(Throwable arg0) {
+        super(arg0);
+    }
+
 }

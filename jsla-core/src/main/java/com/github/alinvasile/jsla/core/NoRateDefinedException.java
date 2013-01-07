@@ -15,24 +15,32 @@
  */
 package com.github.alinvasile.jsla.core;
 
+/**
+ * Exception thrown when there is no rate defined for the authority accessing a
+ * sla-protected resource.
+ * 
+ * @author Alin Vasile
+ * @since 1.0
+ * 
+ */
 public class NoRateDefinedException extends SlaDeniedException {
 
-	private static final long serialVersionUID = 3950739416650661920L;
+    private static final long serialVersionUID = 3950739416650661920L;
 
-	public NoRateDefinedException() {
-		super();
-	}
+    public NoRateDefinedException() {
+        super();
+    }
 
-	public NoRateDefinedException(String arg0, Throwable arg1) {
-		super(arg0, arg1);
-	}
+    public NoRateDefinedException(String arg0, Throwable arg1) {
+        super(arg0, arg1);
+    }
 
-	public NoRateDefinedException(String arg0) {
-		super(arg0);
-	}
+    public NoRateDefinedException(String arg0) {
+        super(arg0);
+    }
 
-	public NoRateDefinedException(Throwable arg0) {
-		super(arg0);
-	}
+    public NoRateDefinedException(Throwable arg0) {
+        super(arg0);
+    }
 
 }

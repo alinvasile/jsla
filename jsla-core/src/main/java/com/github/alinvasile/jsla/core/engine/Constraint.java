@@ -20,29 +20,27 @@ import com.github.alinvasile.jsla.core.SlaDeniedException;
 
 public interface Constraint {
 
-	/**
-	 * Adds a SLA constraint for the given user property.
-	 * 
-	 * @param authority
-	 *            the user property, such as user or group name.
-	 * @param sla
-	 *            the SLA to add.
-	 */
-	void addConstraint(String authority, Sla sla);
+    /**
+     * Adds a SLA constraint for the given user property.
+     * 
+     * @param authority
+     *            the user property, such as user or group name.
+     * @param sla
+     *            the SLA to add.
+     */
+    void addConstraint(String authority, Sla sla);
 
-	
-	/**
-	 * Grant access based on the given user property.
-	 * 
-	 * @param authority
-	 *            the user property, such as user or group name.
-	 * @throws NoRateDefinedException
-	 *             when no SLA is defined for the given user property.
-	 * @throws SlaDeniedException
-	 *             when SLA is breached for the given user property, be it rate
-	 *             or quota.
-	 */
-	void grant(String authority) throws NoRateDefinedException,
-			SlaDeniedException;
+    /**
+     * Grant access based on the given user property.
+     * 
+     * @param authority
+     *            the user property, such as user or group name.
+     * @throws NoRateDefinedException
+     *             when no SLA is defined for the given user property.
+     * @throws SlaDeniedException
+     *             when SLA is breached for the given user property, be it rate
+     *             or quota.
+     */
+    void grant(String authority) throws NoRateDefinedException, SlaDeniedException;
 
 }

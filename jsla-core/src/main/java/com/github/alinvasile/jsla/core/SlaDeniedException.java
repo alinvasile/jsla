@@ -15,24 +15,32 @@
  */
 package com.github.alinvasile.jsla.core;
 
+/**
+ * Exception thrown when the SLA engine denies the request of the authority
+ * accessing a sla-protected resource.
+ * 
+ * @author Alin Vasile
+ * @since 1.0
+ * 
+ */
 public class SlaDeniedException extends RuntimeException {
 
-	private static final long serialVersionUID = -2760086542600346586L;
+    private static final long serialVersionUID = -2760086542600346586L;
 
-	public SlaDeniedException() {
-		super();
-	}
+    public SlaDeniedException() {
+        super();
+    }
 
-	public SlaDeniedException(String arg0, Throwable arg1) {
-		super(arg0, arg1);
-	}
+    public SlaDeniedException(String arg0, Throwable arg1) {
+        super(arg0, arg1);
+    }
 
-	public SlaDeniedException(String arg0) {
-		super(arg0);
-	}
+    public SlaDeniedException(String arg0) {
+        super(arg0);
+    }
 
-	public SlaDeniedException(Throwable arg0) {
-		super(arg0);
-	}
+    public SlaDeniedException(Throwable arg0) {
+        super(arg0);
+    }
 
 }

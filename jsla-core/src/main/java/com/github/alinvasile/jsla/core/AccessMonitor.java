@@ -15,7 +15,6 @@
  */
 package com.github.alinvasile.jsla.core;
 
-
 /**
  * Matches authorities against SLAs.
  * 
@@ -24,15 +23,14 @@ package com.github.alinvasile.jsla.core;
  */
 public interface AccessMonitor {
 
-	
-	/**
-	 * Grants or denies access for the given authority.
-	 * 
-	 * @param authority
-	 *            the authority to grant access.
-	 * @throws SlaDeniedException
-	 *             when the authority is denied access due to SLA breach.
-	 */
-	void grant(Authority authority) throws SlaDeniedException;
+    /**
+     * Grants or denies access for the given authority.
+     * 
+     * @param authority
+     *            the authority to grant access.
+     * @throws SlaDeniedException
+     *             when the authority is denied access due to SLA breach.
+     */
+    void grant(Authority authority) throws SlaDeniedException;
 
 }

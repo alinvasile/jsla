@@ -15,24 +15,32 @@
  */
 package com.github.alinvasile.jsla.core;
 
+/**
+ * Exception thrown when there is no quota defined for the authority accessing a
+ * sla-protected resource.
+ * 
+ * @author Alin Vasile
+ * @since 1.0
+ * 
+ */
 public class QuotaExceededException extends SlaDeniedException {
 
-	private static final long serialVersionUID = 1916679904275255841L;
+    private static final long serialVersionUID = 1916679904275255841L;
 
-	public QuotaExceededException() {
-		super();
-	}
+    public QuotaExceededException() {
+        super();
+    }
 
-	public QuotaExceededException(String arg0, Throwable arg1) {
-		super(arg0, arg1);
-	}
+    public QuotaExceededException(String arg0, Throwable arg1) {
+        super(arg0, arg1);
+    }
 
-	public QuotaExceededException(String arg0) {
-		super(arg0);
-	}
+    public QuotaExceededException(String arg0) {
+        super(arg0);
+    }
 
-	public QuotaExceededException(Throwable arg0) {
-		super(arg0);
-	}
+    public QuotaExceededException(Throwable arg0) {
+        super(arg0);
+    }
 
 }
