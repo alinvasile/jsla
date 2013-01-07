@@ -14,7 +14,7 @@
 	    </init-param>
 	     <init-param>
 	      <param-name>sla.authority.provider</param-name>
-	      <param-value>org.jsla.web.authority.AuthorizationHeaderAuthorityProvider</param-value>
+	      <param-value>com.github.alinvasile.jsla.web.authority.AuthorizationHeaderAuthorityProvider</param-value>
 	    </init-param>
     </filter>
     <filter-mapping>

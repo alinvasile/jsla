@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.github.alinvasile.jsla.ws.jee5;
+package com.github.alinvasile.jsla.ws;
 
 import java.util.concurrent.TimeUnit;
 
