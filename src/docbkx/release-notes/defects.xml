@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE preface PUBLIC "-//OASIS//DTD DocBook XML V4.4//EN"
+                 "http://www.oasis-open.org/docbook/xml/4.4/docbookx.dtd">
+<!-- ==================================================================== 
+	Licensed to the Apache Software Foundation (ASF) under one or more contributor 
+	license agreements. See the NOTICE file distributed with this work for additional 
+	information regarding copyright ownership. The ASF licenses this file to 
+	you under the Apache License, Version 2.0 (the "License"); you may not use 
+	this file except in compliance with the License. You may obtain a copy of 
+	the License at http://www.apache.org/licenses/LICENSE-2.0 Unless required 
+	by applicable law or agreed to in writing, software distributed under the 
+	License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS 
+	OF ANY KIND, either express or implied. See the License for the specific 
+	language governing permissions and limitations under the License. ==================================================================== -->
+
+<chapter id="defects">
+<title>Defects</title>
+	<section>
+		<title>Defects fixed in this release</title>
+		<para>
+			<table>
+				<title>Defects fixed</title>
+				<tgroup cols="3">
+					<colspec colnum="1" colwidth="2*" colname="Defect number" />
+					<colspec colnum="2" colwidth="2*" colname="Severity" />
+					<colspec colnum="3" colwidth="3*" colname="Description" />
+					<thead>
+						<row>
+							<entry>
+								<emphasis role="bold">Defect number</emphasis>
+							</entry>
+							<entry>
+								<emphasis role="bold">Severity</emphasis>
+							</entry>
+							<entry>
+								<emphasis role="bold">Description</emphasis>
+							</entry>
+						</row>
+					</thead>
+					<tbody>
+						<row>
+							<entry align="center" />
+							<entry align="center" />
+							<entry align="right" />
+						</row>
+						<row>
+							<entry align="center" />
+							<entry align="center" />
+							<entry align="right" />
+						</row>
+						<row>
+							<entry align="center" />
+							<entry align="center" />
+							<entry align="right" />
+						</row>
+					</tbody>
+				</tgroup>
+			</table>
+
+		</para>
+	</section>
+	
+	<section>
+		<title>Known defects for this release</title>
+		<para>
+			<table>
+				<title>Known defects</title>
+				<tgroup cols="3">
+					<colspec colnum="1" colwidth="2*" colname="Defect number" />
+					<colspec colnum="2" colwidth="2*" colname="Severity" />
+					<colspec colnum="3" colwidth="3*" colname="Description" />
+					<thead>
+						<row>
+							<entry>
+								<emphasis role="bold">Defect number</emphasis>
+							</entry>
+							<entry>
+								<emphasis role="bold">Severity</emphasis>
+							</entry>
+							<entry>
+								<emphasis role="bold">Description</emphasis>
+							</entry>
+						</row>
+					</thead>
+					<tbody>
+						<row>
+							<entry align="center" />
+							<entry align="center" />
+							<entry align="right" />
+						</row>
+						<row>
+							<entry align="center" />
+							<entry align="center" />
+							<entry align="right" />
+						</row>
+						<row>
+							<entry align="center" />
+							<entry align="center" />
+							<entry align="right" />
+						</row>
+					</tbody>
+				</tgroup>
+			</table>
+
+		</para>
+	</section>
+</chapter>

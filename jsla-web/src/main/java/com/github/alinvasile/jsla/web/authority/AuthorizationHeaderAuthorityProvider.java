@@ -18,10 +18,11 @@ package com.github.alinvasile.jsla.web.authority;
 import javax.servlet.ServletRequest;
 import javax.servlet.http.HttpServletRequest;
 
-import org.apache.commons.codec.binary.Base64;
-import com.github.alinvasile.jsla.core.Authority;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
+import com.github.alinvasile.jsla.core.Authority;
+import com.github.alinvasile.jsla.web.util.Util;
 
 public class AuthorizationHeaderAuthorityProvider implements AuthorityProvider {
 
@@ -41,16 +42,7 @@ private static final Logger logger = LoggerFactory.getLogger(AuthorizationHeader
             
             String authHeader = httpServletRequest.getHeader("authorization");
             if(authHeader != null){
-                String encodedValue = authHeader.split(" ")[1];
-                byte[] decodedValue = Base64.decodeBase64(encodedValue.getBytes());
-                
-                user = new String(decodedValue);
-                
-                user = user.split(":")[0];
-                
-                if(logger.isDebugEnabled()){
-                    logger.debug("Found user: " + user);
-                }
+                user = Util.extractUsernameFromAuthorizationHeader(authHeader);
                 
                 return DefaultAuthorityUser.createUsernameOnlyUser(user);
             }

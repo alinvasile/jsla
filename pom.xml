@@ -16,7 +16,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>com.github.alinvasile.jsla</groupId>
 	<artifactId>jsla</artifactId>
-	<version>1</version>
+	<version>1.0.0</version>
 	<packaging>pom</packaging>
 	<name>jSLA</name>
 	<url>https://github.com/alinvasile/jsla</url>
@@ -134,6 +134,48 @@
 		<commons-codec.version>20041127.091804</commons-codec.version>
 		<servlet-api.version>2.5</servlet-api.version>
 	</properties>
+	
+	 <build>
+       <plugins>
+       <plugin>
+        <groupId>com.agilejava.docbkx</groupId>
+        <artifactId>docbkx-maven-plugin</artifactId>
+        <dependencies>
+          <dependency>
+            <groupId>org.docbook</groupId>
+            <artifactId>docbook-xml</artifactId>
+            <version>4.4</version>
+            <scope>runtime</scope>
+          </dependency>
+        </dependencies>
+        <executions>
+          <execution>
+            <id>tutorial-site</id>
+            <goals>
+              <goal>generate-html</goal>
+              <goal>generate-pdf</goal>
+            </goals>
+             <phase>pre-site</phase>
+          </execution>
+        </executions>    
+        <configuration>
+          <includes>*-index.xml</includes>
+          <chunkedOutput>true</chunkedOutput>
+          <xincludeSupported>true</xincludeSupported>
+          <foCustomization>src/docbkx/resources/xsl/fopdf.xsl</foCustomization>
+          <htmlCustomization>src/docbkx/resources/xsl/html_chunk.xsl</htmlCustomization>
+          <htmlStylesheet>css/hc-tutorial.css</htmlStylesheet>
+          <entities>
+            <entity>
+              <name>version</name>
+              <value>1.0.0</value>
+            </entity>
+          </entities>
+        </configuration>
+        
+      </plugin>
+       </plugins>
+     </build>
 
 
 </project>

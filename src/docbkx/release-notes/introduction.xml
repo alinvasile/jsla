@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE preface PUBLIC "-//OASIS//DTD DocBook XML V4.4//EN"
+                 "http://www.oasis-open.org/docbook/xml/4.4/docbookx.dtd">
+<!-- ==================================================================== 
+	Licensed to the Apache Software Foundation (ASF) under one or more contributor 
+	license agreements. See the NOTICE file distributed with this work for additional 
+	information regarding copyright ownership. The ASF licenses this file to 
+	you under the Apache License, Version 2.0 (the "License"); you may not use 
+	this file except in compliance with the License. You may obtain a copy of 
+	the License at http://www.apache.org/licenses/LICENSE-2.0 Unless required 
+	by applicable law or agreed to in writing, software distributed under the 
+	License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS 
+	OF ANY KIND, either express or implied. See the License for the specific 
+	language governing permissions and limitations under the License. ==================================================================== -->
+
+<chapter id="introduction">
+<title>Introduction</title>
+		<section>
+			<title>Library components</title>
+
+			<section>
+				<title>jSLA core</title>
+				<para>
+					This is the core component of the jSLA library and contains
+					base classes
+					for
+					access monitoring and constrain-defining operations.
+				</para>
+				<section>
+					<title>Requirements</title>
+					<para>
+						<itemizedlist>
+							<listitem>
+								<para>
+									jSLA core requires at least Java SE 1.5.
+								</para>
+							</listitem>
+						</itemizedlist>
+					</para>
+				</section>
+			</section>
+
+			<section>
+				<title>jSLA web</title>
+				<para>
+					This is the jSLA library intended for web applications and
+					used
+					in conjunction
+					with the jSLA core component to constrain access
+					to
+					web
+					resources, such as web pages, web
+					services paths or other
+					xml/json
+					resources in an application.
+				</para>
+			</section>
+		</section>
+
+</chapter>
